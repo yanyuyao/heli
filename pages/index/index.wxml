@@ -8,7 +8,7 @@
 </swiper>
 <view class="button-k">
   <navigator url="../order/order">
-    <button class="button" size="mini" disabled="{{disabled}}" bindtap="default">我要咨询</button>
+    <button class="button" size="mini" disabled="{{disabled}}" bindtap="default">{{userInfo.openId}}99我要咨询</button>
   </navigator>
 </view>
 <navigator url="../ordermy/ordermy">
@@ -39,7 +39,7 @@
     <view class="list-right">>></view>
   </view>
 </navigator>
-
+<text bindtap="createUser" >注册用户</text>>
 
 
 
