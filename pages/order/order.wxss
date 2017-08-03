@@ -1,0 +1,27 @@
+.image{
+  width:100%;
+}
+.bt{
+  width:85%; line-height: 50px; font-size:0.8rem; text-align: center; float:left; color:#555; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.add{
+  width:23px; height:23px; float: right; margin:14px 5% 0 0;
+}
+.view2{
+  margin-bottom:110px;
+}
+.footer{
+  width:100%; height:50px; font-size:0.8rem; line-height:50px; background-color:#E51C23; color:#fff; clear:both; position:fixed; bottom:0; left:0;
+}
+.footer image{
+  width:12%; height:35px; margin:7px 2% 0; float:left;
+}
+.price{
+  width:35%; text-align: center; float:left;
+}
+.confirm{
+  width:40%; float:right; text-align:left; margin:8px 0; border-left:1px solid #f2f2f2; line-height:34px; padding:0 2%;
+}
+.confirm-right{
+  float:right;
+}

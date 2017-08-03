@@ -1,0 +1,26 @@
+<view class="contain">
+  <view class="headimgk">
+    <image class="headimg" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
+  </view>
+  <input type="text" placeholder="姓名"></input>
+  <input type="text" placeholder="性别"></input>
+  <input type="text" placeholder="身高"></input>
+  <input type="text" placeholder="出生年月"></input>
+  <input type="text" placeholder="婚姻状况"></input>
+  <input type="text" placeholder="户口所在地"></input>
+  <input type="text" placeholder="特长"></input>
+  <input type="text" placeholder="联系电话"></input>
+  <input type="text" placeholder="学历"></input>
+  <input type="text" placeholder="毕业院校"></input>
+  <input type="text" placeholder="英文能力"></input>
+  <view class="text">
+    <textarea placeholder="工作能力" />
+  </view>
+  <view class="text">
+    <textarea placeholder="期望岗位（可选填）" />
+  </view>
+  <view class="buttonk">
+    <button size="mini" class="button">提交</button>
+    <button size="mini" class="button">取消</button>
+  </view>
+</view>

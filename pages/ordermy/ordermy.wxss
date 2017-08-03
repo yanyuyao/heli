@@ -1,0 +1,20 @@
+.single{
+  width:96%; border-bottom:1px solid #ccc; padding:15px 2%;
+}
+.single image{
+  width:20%; height:70px; float:left;
+}
+.center{
+  width:50%; float: left; margin:0 2%; font-size:0.8rem;
+}
+.right{
+  width:20%; height:70px; line-height:70px; float: right; text-align: center; font-size:1rem; border:1px solid #ccc; border-radius:50px;
+}
+
+
+
+
+
+
+
+

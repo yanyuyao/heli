@@ -1,0 +1,34 @@
+<view class="contain">
+  <image class="img1" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
+  <text>
+    微信公众号开通原创功能是有要求的，1.必须开通原创保护。2.除了个人类型的公众号，必须先开通微信认证。3.除了个人类型的公众号，必须先开通微信支付。
+  </text>
+  <text>
+    如果你的公众号没有开通原创功能，请看下这篇文章《微信公众号怎么申请原创保护功能》。微信公众号的原创保护功能，赞赏功能目前是邀请的，所以，你只有不断的写原创，等着邀请开通赞赏功能就行了。
+  </text>
+  <text>
+    我的公众号是一个月前被邀请开通了原创保护功能，昨晚收到了邀请我使用赞赏功能，我昨晚申请今天早上就通过了，下面教大家如何操作：
+  </text>
+  <text>
+    第一，登录公众号，打开邀请信息提醒
+  </text>
+  <image class="img1" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
+  <view class="code">
+    <view>二维码关注：</view>
+    <image src="../../images/code.png"></image>
+  </view>
+</view>
+<view class="footer">
+  打赏我们哟！！
+</view>
+<view class="pop">
+  <input type="number" placeholder="输入打赏金额"/>
+  <view class="button cancel">取消</view>
+  <view class="button confirm">确定</view>
+</view>
+
+
+
+
+
+

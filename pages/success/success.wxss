@@ -1,0 +1,32 @@
+.contain{
+  width:80%; margin:0 10%;
+}
+.topimg{
+  width:70%; margin:10px 15%; height:130px;
+}
+.text{
+  width:100%; color:#000; font-size:0.8rem; font-weight:bold;
+}
+.button{
+  line-height:35px; height:35px; background-color:#E51C23; color:#fff; margin:30px auto 60px; font-size:0.9rem;
+}
+.sign{
+  width:90%; padding:5px 5% 15px; background-color:#F0EFF5;
+}
+.signbtk{
+  width:100%; border-bottom:1px solid #ccc; line-height:35px;
+}
+.signimg{
+  width:20px; height:20px; vertical-align:middle; line-height:30px; margin:-5px 0 0 0;
+}
+.signbt{
+  font-size:0.7rem;
+}
+.signtext{
+  font-size:0.6rem; margin:5px 0;
+}
+
+
+
+
+ 

@@ -1,0 +1,53 @@
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image"/>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="button-k">
+  <navigator url="../order/order">
+    <button class="button" size="mini" disabled="{{disabled}}" bindtap="default">我要咨询</button>
+  </navigator>
+</view>
+<navigator url="../ordermy/ordermy">
+  <view class="list">
+    <image src="../../images/order.png"></image>
+    我的订单
+    <view class="list-right">>></view>
+  </view>
+</navigator>
+<navigator url="../add/add">
+  <view class="list">
+    <image src="../../images/add.png"></image>
+    加入我们
+    <view class="list-right">>></view>
+  </view>
+</navigator>
+<navigator url="../tip/tip">
+  <view class="list">
+    <image src="../../images/dashang.png"></image>
+    打赏我们
+    <view class="list-right">>></view>
+  </view>
+</navigator>
+<navigator url="../about/about">
+  <view class="list">
+    <image src="../../images/about.png"></image>
+    关于我们
+    <view class="list-right">>></view>
+  </view>
+</navigator>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/order",
+    "pages/ordermy/ordermy",
+    "pages/add/add",
+    "pages/tip/tip",
+    "pages/submit/submit",
+    "pages/success/success",
+    "pages/about/about"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "河狸咨询",
+    "navigationBarTextStyle": "black"
+  }
+}

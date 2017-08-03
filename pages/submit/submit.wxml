@@ -1,0 +1,33 @@
+<view class="contain">
+  <input type="text" placeholder="姓名/公司名称"></input>
+  <input type="text" placeholder="联系方式"></input>
+  <view class="card">语音咨询</view>
+  <view class="card">文字咨询</view>
+  <view class="sound">
+    <button size="mini">录音</button>
+  </view>
+  <view class="text">
+    <textarea placeholder="" />
+  </view>
+  <input type="text" placeholder="邮箱"></input>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{pickerrange}}">
+    <view>
+      支付方式：{{pickerrange[index]}}
+    </view>
+  </picker>
+</view>
+
+
+<view class="footer" style="display:block;">
+  <image src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
+  <view class="price">￥35.00</view>
+  <navigator url="../success/success">
+    <view class="confirm">
+      提交并支付
+      <view class="confirm-right">></view>
+    </view>
+  </navigator>
+</view>
+
+
+

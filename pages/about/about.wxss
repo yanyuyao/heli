@@ -1,0 +1,13 @@
+.contain{
+  width:80%; margin:0 10%;
+}
+.text{
+  width:100%; font-size:0.8rem; line-height:2rem; margin-top:30px; text-indent:2rem; text-align:justify; text-justify: inter-ideograph;
+}
+.footer{
+  width:100%; text-align:center; color:#666; font-size:0.8rem; margin-top: 200px;
+}
+
+
+
+

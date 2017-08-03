@@ -1,0 +1,26 @@
+<view class="contain">
+  <image class="topimg" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
+  <text class="text">
+    您已支付成功，工作人员会尽快电话联系您梳理您的咨询需求。
+  </text>
+  <text class="text">
+    您今日使用了1次**服务的机会，目前还剩余*次**服务机会，每日上午9点会刷新您的服务机会。
+  </text>
+  <button class="button">返回首页</button>
+</view>
+<view class="sign">
+  <view class="signbtk">
+    <view class="signbt">
+      <image class="signimg" src="../../images/sign.png"></image>
+      友情提示
+    </view>
+  </view>
+  <view class="signtext">
+    如遇临时断货，将导致您无法获得所定食物，或需延迟送餐到达时间，我们将立即致电您协商解决，敬请原谅。
+  </view>
+</view>
+
+
+
+
+

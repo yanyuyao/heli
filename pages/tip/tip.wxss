@@ -1,0 +1,42 @@
+.contain{
+  width:94%; margin:0 3%; margin-bottom:50px;
+}
+.img1{
+  width:100%; margin:10px 0;
+}
+text{
+  width:100%; font-size:0.7rem;
+}
+.code{
+  width:100%; text-align: center;
+}
+.code image{
+  width:200px; height:200px;
+}
+.code view{
+  width:100%; text-align:left; font-size:0.9rem; margin-left:10%;
+}
+.footer{
+  width:100%; line-height:50px; background-color:#E51C23; color:#fff; font-size:1rem; font-weight:bold; text-align: center; position: fixed; bottom:0; left:0;
+}
+.pop{
+  width:80%; height:180px; text-align: center; position:fixed;top:20%; left:10%; border:1px solid #ccc; background-color:#fff; border-radius:10px; -webkit-border-radius:10px; -moz-border-radius:10px;
+}
+.pop input{
+  width:70%; line-height:35px; height:35px; border:1px solid #ccc; margin:46px auto; font-size:0.8rem; text-align:left; padding:0 5px;
+}
+.button{
+  width:50%; line-height:50px; float: left; border-top:1px solid #ccc;
+}
+.cancel{
+  color:#888; border-right:1px solid #ccc; margin-right:-1px;
+}
+.confirm{
+  color:#E51C23;
+}
+
+
+
+
+
+

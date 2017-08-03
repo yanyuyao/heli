@@ -1,0 +1,18 @@
+<view class="single">
+  <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+  <view class="center">
+    <view class="center-bt">网络数据调研 描述XXXXXXXXXXXXXXX</view>
+    <view class="center-price">￥35.00</view>
+  </view>
+  <view class="right">已完成</view>
+  <view class="clear"></view>
+</view>
+<view class="single">
+  <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+  <view class="center">
+    <view class="center-bt">网络数据调研 描述XXXXXXXXXXXXXXX</view>
+    <view class="center-price">￥35.00</view>
+  </view>
+  <view class="right">未支付</view>
+  <view class="clear"></view>
+</view>
