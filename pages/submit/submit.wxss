@@ -19,6 +19,12 @@
 .text textarea{
   height:130px; width:98%; padding:1%; font-size:0.8rem;
 }
+.cardactive{
+  color:#fff; background-color:#E51C23;
+}
+.paytype{
+  width:98%; line-height:35px; font-size:0.8em; padding-left:2%; margin:20px 0;
+}
 
 
 .footer{

@@ -4,14 +4,60 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pickerrange:['微信支付','支付宝支付'],
+    selectedimg:'',
+    selectedprice:'',
+    soundactive:'cardactive',
+    textactive:'',
+    sounddisplay:'',
+    textdisplay:'none',
+    soundfile:''
+  },
+
+  /**选项卡切换 */
+  soundcardtap:function(){
+    this.setData({
+      soundactive: 'cardactive',
+      textactive: '',
+      sounddisplay: 'block',
+      textdisplay: 'none'
+    })
+  },
+  textcardtap: function () {
+    this.setData({
+      soundactive: '',
+      textactive: 'cardactive',
+      sounddisplay: 'none',
+      textdisplay: 'block'
+    })
+  },
+  soundtap:function(){
+    wx.startRecord({
+      success:function(res){
+        this.setData({
+          soundfile:res.tempFilePath
+        })
+        console.log(res.tempFilePath);
+      }
+    })    
+  },
+  soundtapend: function () {
+    wx.stopRecord();
+    wx.showToast({
+      title: '录音成功',
+      icon: 'success',
+      duration: 2000
+    })
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({
+      selectedimg:options.selectedimg,
+      selectedprice:options.selectedprice
+    });
   },
 
   /**

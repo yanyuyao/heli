@@ -1,26 +1,24 @@
 <view class="contain">
-  <input type="text" placeholder="姓名/公司名称"></input>
-  <input type="text" placeholder="联系方式"></input>
-  <view class="card">语音咨询</view>
-  <view class="card">文字咨询</view>
-  <view class="sound">
-    <button size="mini">录音</button>
+  <input type="text" placeholder="姓名/公司名称" bindinput="namevalue"></input>
+  <input type="number" placeholder="联系方式" bindblur="telvalue"></input>
+  <view class="card {{soundactive}}" bindtap="soundcardtap">语音咨询</view>
+  <view class="card {{textactive}}" bindtap="textcardtap">文字咨询</view>
+  <view class="sound" style="display:{{sounddisplay}}">
+    <button size="mini" bindlongtap="soundtap" bindtouchend="soundtapend">录音</button>
   </view>
-  <view class="text">
+  <view class="text" style="display:{{textdisplay}}">
     <textarea placeholder="" />
   </view>
   <input type="text" placeholder="邮箱"></input>
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{pickerrange}}">
-    <view>
-      支付方式：{{pickerrange[index]}}
-    </view>
-  </picker>
+  <view class="paytype">
+    支付方式：微信支付
+  </view>
 </view>
 
 
 <view class="footer" style="display:block;">
-  <image src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
-  <view class="price">￥35.00</view>
+  <image src="{{selectedimg}}"></image>
+  <view class="price">￥{{selectedprice}}.00</view>
   <navigator url="../success/success">
     <view class="confirm">
       提交并支付

@@ -2,10 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/order/order",
+    "pages/submit/submit",
     "pages/ordermy/ordermy",
     "pages/add/add",
     "pages/tip/tip",
-    "pages/submit/submit",
     "pages/success/success",
     "pages/about/about"
   ],

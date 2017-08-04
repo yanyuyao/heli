@@ -1,17 +1,24 @@
-<view>
-  <image class="image" src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-  <text class="bt">网络数据调研 </text>
-  <image class="add" src="../../images/plus.png"></image>
-</view>
 <view class="view2">
-  <image class="image" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
-  <text class="bt">全面调研 </text>
-  <image class="add" src="../../images/plus.png"></image>
+  <view wx:for="{{serveList}}">
+    <image class="image" src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
+    <text class="bt">{{item.serve_name}} {{item.serve_title}}</text>
+    <image class="add" id="{{item.serve_id}}" data-price="{{item.serve_price}}" data-img="https://xcx.heyukj.com/{{item.serve_url}}" bindtap="addtap" src="../../images/plus.png"></image>
+  </view>
+  <!--<view wx:for="{{serveList}}">
+    <image class="image" src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+    <text class="bt">网络数据调研 </text>
+    <image class="add" src="../../images/plus.png"></image>
+  </view>
+  <view>
+    <image class="image" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
+    <text class="bt">全面调研 </text>
+    <image class="add" src="../../images/plus.png"></image>
+  </view>-->
 </view>
-<view class="footer" style="display:block;">
-  <image src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
-  <view class="price">￥0</view>
-  <navigator url="../submit/submit">
+<view class="footer" style="display:{{footerdisplay}}">
+  <image src="{{selectedimg}}"></image>
+  <view class="price">￥{{selectedprice}}.00</view>
+  <navigator url="../submit/submit?selectedimg={{selectedimg}}&selectedprice={{selectedprice}}">
     <view class="confirm">
       选好了
       <view class="confirm-right">></view>
