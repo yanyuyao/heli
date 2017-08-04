@@ -40,6 +40,8 @@ Page({
   addtap: function(e){
     this.setData({
       footerdisplay:"block",
+      serve_id: e.currentTarget.dataset.serveid,
+      serve_name: e.currentTarget.dataset.servename,
       selectedimg:e.currentTarget.dataset.img,
       selectedprice:e.currentTarget.dataset.price
     })
