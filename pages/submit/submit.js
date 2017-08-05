@@ -14,6 +14,18 @@ Page({
     textdisplay:'none',
     soundfile:''
   },
+  
+  /**
+     * 生命周期函数--监听页面加载
+     */
+  onLoad: function (options) {
+    this.setData({
+      selectedimg: options.selectedimg,
+      selectedprice: options.selectedprice,
+      serve_id: options.serve_id,
+      serve_name: options.serve_name
+    });
+  },
 
   /**选项卡切换 */
   soundcardtap:function(){
@@ -32,6 +44,7 @@ Page({
       textdisplay: 'block'
     })
   },
+  /**录音事件 */
   soundtap:function(){
     wx.startRecord({
       success:function(res){
@@ -59,7 +72,8 @@ Page({
         wx.showToast(
           { 
             title: '姓名/公司不得为空!', 
-            icon: 'loading', 
+            icon: '',
+            image:'../../images/warn.png', 
             duration: 1500 
           });    
           setTimeout(function () { wx.hideToast()}, 2000); 
@@ -67,7 +81,8 @@ Page({
       wx.showToast(
         {
           title: '手机号码不得为空!',
-          icon: 'loading',
+          icon: '',
+          image: '../../images/warn.png',
           duration: 1500
         });
       setTimeout(function () { wx.hideToast() }, 2000); 
@@ -75,12 +90,17 @@ Page({
         wx.showToast(
           { 
             title: '请输入11位手机号码!', 
-            icon: 'loading', 
+            icon: '',
+            image: '../../images/warn.png', 
             duration: 1500 
           });    
           setTimeout(function () {wx.hideToast()}, 2000) 
     } else if (e.detail.value.email.length == 0) { 
-        wx.showToast({ title: '请输入邮箱!', icon: 'loading', duration: 1500 });    
+        wx.showToast({
+           title: '请输入邮箱!', 
+           icon: '',
+           image: '../../images/warn.png',
+           duration: 1500 });    
         setTimeout(function () { wx.hideToast() }, 2000) 
     } else {
       console.log('create order');
@@ -112,6 +132,9 @@ Page({
                 icon: 'success',
                 duration: 1000
               });
+              wx.navigateTo({
+                url: '../index/index',
+              })
             }else{
               wx.showToast({
                 title: res.data.msg,//这里打印出登录成功           
@@ -136,17 +159,7 @@ Page({
         
     }  
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-      this.setData({
-      selectedimg:options.selectedimg,
-      selectedprice:options.selectedprice,
-      serve_id: options.serve_id,
-      serve_name: options.serve_name
-    });
-  },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

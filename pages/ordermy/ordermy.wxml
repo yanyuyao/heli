@@ -1,13 +1,18 @@
-<view class="single">
-  <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-  <view class="center">
-    <view class="center-bt">网络数据调研 描述XXXXXXXXXXXXXXX</view>
-    <view class="center-price">￥35.00</view>
+<view wx:for="{{orderList}}">
+  <view class="single">
+    <image src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
+    <view class="center">
+      <view class="center-bt">{{item.serve_name}} {{item.serve_title}}哈哈哈哈哈哈哈哈哈或或或或</view>
+      <view class="center-price">￥{{item.serve_price}}.00</view>
+    </view>
+    <view class="right" wx:if="{{item.status==1}}" id="1" bindtap="paytap" data-img="https://xcx.heyukj.com/{{item.serve_url}}" data-price="{{item.serve_price}}" data-name="item.serve_name">未支付</view>
+    <view class="right" wx:elif="{{item.status==2}}" id="2" bindtap="paytap">已支付</view>
+    <view class="right" wx:elif="{{item.status==3}}" id="3" bindtap="paytap">已处理</view>
+    <view class="right" wx:elif="{{item.status==4}}" id="4" bindtap="paytap">已完成</view>
+    <view class="clear"></view>
   </view>
-  <view class="right">已完成</view>
-  <view class="clear"></view>
 </view>
-<view class="single">
+<!--<view class="single">
   <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
   <view class="center">
     <view class="center-bt">网络数据调研 描述XXXXXXXXXXXXXXX</view>
@@ -15,4 +20,12 @@
   </view>
   <view class="right">未支付</view>
   <view class="clear"></view>
-</view>
+</view>-->
+
+
+
+
+
+
+
+

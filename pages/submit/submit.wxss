@@ -42,7 +42,9 @@
 .confirm-right{
   float:right;
 }
-
+button.submit{
+  padding:0; font-size:0.8rem;
+}
 
 
 

@@ -1,8 +1,11 @@
 .contain{
   width:94%; margin:0 3%;
 }
-.contain input{
+input,picker,radio-group{
   width:96%; height:35px; line-height:35px; border-bottom:1px solid #ccc; font-size:0.8rem; padding:0 2%;
+}
+label{
+  margin-right:10px;
 }
 .headimgk{
   width:100%; text-align: center;
