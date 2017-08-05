@@ -1,3 +1,4 @@
+var utilMd5 = require('../../utils/md5.js');  
 Page({
 
   /**
@@ -12,7 +13,9 @@ Page({
     textactive:'',
     sounddisplay:'',
     textdisplay:'none',
-    soundfile:''
+    soundfile:'',
+    usersession: wx.getStorageSync('usersession'),
+    userid: wx.getStorageSync('userid'),
   },
   
   /**
@@ -24,9 +27,9 @@ Page({
       selectedprice: options.selectedprice,
       serve_id: options.serve_id,
       serve_name: options.serve_name
-    });
+    })
   },
-
+	
   /**选项卡切换 */
   soundcardtap:function(){
     this.setData({
@@ -44,14 +47,25 @@ Page({
       textdisplay: 'block'
     })
   },
-  /**录音事件 */
   soundtap:function(){
+    var that = this;
     wx.startRecord({
       success:function(res){
-        this.setData({
+        that.setData({
           soundfile:res.tempFilePath
+        });
+        /*wx.saveFile({
+          tempFilePath: res.tempFilePath[0],
+          success: function (res) {
+            var savedFilePath = res.savedFilePath;
+            console.log("====== save file =======");
+          }
         })
+        */
         console.log(res.tempFilePath);
+        console.log('==== 保存录音文件 ====');
+        uploadFileToServer(res.tempFilePath,'sounds');
+        
       }
     })    
   },
@@ -68,6 +82,15 @@ Page({
    * 提交订单
    */
   formSubmit: function (e) {
+    wx.showToast(
+      {
+        title: '订单提交中...',
+        icon: 'loading',
+        duration: 1500
+      }); 
+    console.log("====== 提交订单 ========");
+    console.log("==== openid : " + this.data.usersession);
+    console.log("==== 录音文件 ："+this.data.soundfile);
     if (e.detail.value.companyname.length == 0) { 
         wx.showToast(
           { 
@@ -97,24 +120,29 @@ Page({
           setTimeout(function () {wx.hideToast()}, 2000) 
     } else if (e.detail.value.email.length == 0) { 
         wx.showToast({
-           title: '请输入邮箱!', 
-           icon: '',
-           image: '../../images/warn.png',
-           duration: 1500 });    
+          title: '请输入邮箱!', icon: '',
+          image: '../../images/warn.png',
+          duration: 1500
+        });    
         setTimeout(function () { wx.hideToast() }, 2000) 
     } else {
-      console.log('create order');
-        console.log(this.data.serve_name);
+        //console.log('create order');
+        //console.log(this.data.serve_name);
+        
+      if(this.data.usersession){
+       
         wx.request({
           url: 'https://xcx.heyukj.com/Portal/Order/createOrder', 
           header: { "Content-Type": "application/x-www-form-urlencoded" }, 
           method: "POST", 
           data: { 
-            users_id:6,
+            usersession: this.data.usersession,
+            users_id: this.data.userid,
             serve_id: this.data.serve_id,
             serve_name: this.data.serve_name,
-            number:1333,
+            number:1,
             amount: this.data.selectedprice,
+            //amount: 0,
             names:e.detail.value.companyname,
             order_vconsult: this.data.soundfile,
             order_tconsult: e.detail.value.zixun_text,
@@ -123,23 +151,98 @@ Page({
           }, 
           success: function (res) {
             console.log('创建订单成功');
-            console.log(res);
+            //console.log(res);
             if (res.data.status == 1003){
               var order_id = res.data.data.order_id;
               var order_num = res.data.data.order_num;
-              wx.showToast({
-                title: "订单创建成功,请支付...",//这里打印出登录成功           
-                icon: 'success',
-                duration: 1000
-              });
-              wx.navigateTo({
-                url: '../index/index',
-              })
+              if (res.data.data.pay_type == 'dev'){//支付为0，
+                wx.showToast({
+                  title: "支付成功...",//这里打印出登录成功           
+                  icon: 'success',
+                  duration: 2000
+                });
+                wx.navigateTo({
+                  url:'../success/success'
+                });
+              }else{
+              //{{{
+                var reswxData = res.data.data.wxorder;
+
+                if (reswxData.return_code == 'SUCCESS'){
+                  var appId = reswxData.appid;
+                  var timeStamp = (Date.parse(new Date()) / 1000).toString();
+                  var pkg = 'prepay_id=' + reswxData.prepay_id;
+                  var nonceStr = reswxData.nonce_str;
+                  var paySign = utilMd5.hexMD5('appId=' + appId + '&nonceStr=' + nonceStr + '&package=' + pkg + '&signType=MD5&timeStamp=' + timeStamp + "&key=7TCfxZCV2xFFGKEJo15ooCoVzP6iMyVL").toUpperCase();
+                 // console.log(paySign);
+                  //console.log(appId);
+                  wx.requestPayment({
+                    'timeStamp': timeStamp,
+                    'nonceStr': nonceStr,
+                    'package': pkg,
+                    'signType': 'MD5',
+                    'paySign': paySign,
+                    'success': function (res) {
+                      //console.log(" === wx request payment success === ");
+                     //{{{支付成功，修改订单状态
+                      wx.request({
+                        url: 'https://xcx.heyukj.com/index.php/Portal/Order/payOrder',
+                        data: {
+                          order_id: order_id,
+                          status : 2
+                        },
+                        method: 'POST',
+                        header: {
+                          "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        success: function (res) {
+                          wx.showToast({
+                            title: "支付成功...",//这里打印出登录成功           
+                            icon: 'success',
+                            duration: 2000
+                          });
+                          wx.navigateTo({
+                            url: '../success/success'
+                          });
+                        }
+                      });
+                      //}}} 支付成功，修改订单状态
+                      //console.log(res);
+                    },
+                    'fail': function (res) {
+                      //console.log(" === wx request payment fail === ");
+                      wx.showToast({
+                        title: "支付失败...",//这里打印出登录成功           
+                        icon: 'error',
+                        duration: 2000
+                      });
+                      //console.log(res);
+                    },
+                    'complete': function (res) {
+                      //console.log(" === wx request payment complete === ");
+                      //wx.showToast({
+                      //  title: "支付完成...",//这里打印出登录成功           
+                      //  icon: 'success',
+                      //  duration: 2000
+                      //});
+                      //console.log(res);
+                    }
+                  });
+                }else{
+                  wx.showToast({
+                    title: "支付失败...",//这里打印出登录成功           
+                    icon: 'error',
+                    duration: 2000
+                  });
+                }
+              //}}} end 微信支付
+            }
+
             }else{
               wx.showToast({
                 title: res.data.msg,//这里打印出登录成功           
                 icon: 'success',
-                duration: 1000
+                duration: 3000
               });
             }
             
@@ -156,10 +259,27 @@ Page({
             */       
           }
         });   
-        
+      }else{
+          wx.showToast({
+            title: "登录授权失败...",//这里打印出登录成功           
+            icon: 'error',
+            duration: 1000
+          });
+          wxLogin(this);
+      }
     }  
   },
-  
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+      this.setData({
+      selectedimg:options.selectedimg,
+      selectedprice:options.selectedprice,
+      serve_id: options.serve_id,
+      serve_name: options.serve_name
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -210,3 +330,100 @@ Page({
     
   }
 })
+
+
+/**
+ * 登录usersession
+ */
+function wxLogin(e) {
+  //wx.showModal({
+  //  title: '登录'
+  //});
+  //调用登录接口
+  //1.小程序调用wx.login得到code.
+  console.log('登录wxlogin');
+  var that = e;
+  wx.login({
+    success: function (res) {
+      var code = res['code'];
+      //2.小程序调用wx.getUserInfo得到rawData, signatrue, encryptData.
+      wx.getUserInfo({
+        success: function (info) {
+          console.log(info);
+          var rawData = info['rawData'];
+          var signature = info['signature'];
+          var encryptData = info['encryptData'];
+          var encryptedData = info['encryptedData']; //注意是encryptedData不是encryptData...坑啊
+          var iv = info['iv'];
+
+          getApp().globalData.userInfo = info.userInfo;
+          //typeof cb == "function" && cb(that.globalData.userInfo)
+
+          //3.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
+          wx.request({
+            url: 'https://xcx.heyukj.com/index.php/User/Register/wxLogin/',
+            data: {
+              "code": code,
+              "rawData": rawData,
+              "signature": signature,
+              "encryptData": encryptData,
+              'iv': iv,
+              'encryptedData': encryptedData
+            },
+            method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT    
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }, // 设置请求的 header   
+            success: function (res) {
+              console.log('==================== ouid ==========');
+              console.log(res.data.ouid);
+              if (res.statusCode != 200) {
+                wx.showModal({
+                  title: '登录失败'
+                });
+              }
+              that.setData({
+                usersession: res.data.ouid
+              });
+              console.log(that.data.usersession);
+              typeof func == "function" && func(res.data);
+            }
+          });
+        }
+      });
+
+    }
+  });
+}
+//}}} 用户登录
+
+//{{{上传文件
+function uploadFileToServer(tempFilePaths,filetype){
+  console.log("======= 上传文件方法 ========");
+  console.log(tempFilePaths);
+  wx.saveFile({
+    tempFilePath: tempFilePaths,
+    success: function (res) {
+      var savedFilePath = res.savedFilePath;
+      console.log("====== save file path =======");
+      console.log("==== save file path : " + savedFilePath);
+      wx.uploadFile({
+        url: 'http://xcx.heyukj.com/index.php/Portal/Order/uploadfiles',
+        filePath: savedFilePath[0],
+        name: "file",
+        formData: {
+          "filetype": filetype
+        },
+        success: function (res) {
+          var data = res.data;
+          console.log(res);
+          //do something
+        }
+      });
+    }
+  })
+
+  
+}
+
+//}}} end 上传文件
