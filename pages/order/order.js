@@ -1,3 +1,4 @@
+var util = require('../../utils/util.js');  
 Page({
 
   /**
@@ -15,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    util.getUserId();
     wx.request({
       url: 'https://xcx.heyukj.com/index.php/Portal/Interface/serveList',
       data: {
@@ -44,7 +46,8 @@ Page({
       serve_name: e.currentTarget.dataset.servename,
       selectedimg:e.currentTarget.dataset.img,
       selectedprice:e.currentTarget.dataset.price
-    })
+    });
+    util.userServiceStatus(this, e.currentTarget.dataset.serveid);
   },
 
   /**
@@ -97,3 +100,4 @@ Page({
     
   }
 })
+

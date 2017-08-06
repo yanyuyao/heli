@@ -1,4 +1,5 @@
 var utilMd5 = require('../../utils/md5.js');  
+var util = require('../../utils/util.js');  
 Page({
 
   /**
@@ -64,7 +65,7 @@ Page({
         */
         console.log(res.tempFilePath);
         console.log('==== 保存录音文件 ====');
-        uploadFileToServer(res.tempFilePath,'sounds');
+        util.uploadFileToServer(res.tempFilePath,'sounds');
         
       }
     })    
@@ -265,7 +266,7 @@ Page({
             icon: 'error',
             duration: 1000
           });
-          wxLogin(this);
+          util.wxLogin(this);
       }
     }  
   },
@@ -331,99 +332,3 @@ Page({
   }
 })
 
-
-/**
- * 登录usersession
- */
-function wxLogin(e) {
-  //wx.showModal({
-  //  title: '登录'
-  //});
-  //调用登录接口
-  //1.小程序调用wx.login得到code.
-  console.log('登录wxlogin');
-  var that = e;
-  wx.login({
-    success: function (res) {
-      var code = res['code'];
-      //2.小程序调用wx.getUserInfo得到rawData, signatrue, encryptData.
-      wx.getUserInfo({
-        success: function (info) {
-          console.log(info);
-          var rawData = info['rawData'];
-          var signature = info['signature'];
-          var encryptData = info['encryptData'];
-          var encryptedData = info['encryptedData']; //注意是encryptedData不是encryptData...坑啊
-          var iv = info['iv'];
-
-          getApp().globalData.userInfo = info.userInfo;
-          //typeof cb == "function" && cb(that.globalData.userInfo)
-
-          //3.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
-          wx.request({
-            url: 'https://xcx.heyukj.com/index.php/User/Register/wxLogin/',
-            data: {
-              "code": code,
-              "rawData": rawData,
-              "signature": signature,
-              "encryptData": encryptData,
-              'iv': iv,
-              'encryptedData': encryptedData
-            },
-            method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT    
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }, // 设置请求的 header   
-            success: function (res) {
-              console.log('==================== ouid ==========');
-              console.log(res.data.ouid);
-              if (res.statusCode != 200) {
-                wx.showModal({
-                  title: '登录失败'
-                });
-              }
-              that.setData({
-                usersession: res.data.ouid
-              });
-              console.log(that.data.usersession);
-              typeof func == "function" && func(res.data);
-            }
-          });
-        }
-      });
-
-    }
-  });
-}
-//}}} 用户登录
-
-//{{{上传文件
-function uploadFileToServer(tempFilePaths,filetype){
-  console.log("======= 上传文件方法 ========");
-  console.log(tempFilePaths);
-  wx.saveFile({
-    tempFilePath: tempFilePaths,
-    success: function (res) {
-      var savedFilePath = res.savedFilePath;
-      console.log("====== save file path =======");
-      console.log("==== save file path : " + savedFilePath);
-      wx.uploadFile({
-        url: 'http://xcx.heyukj.com/index.php/Portal/Order/uploadfiles',
-        filePath: savedFilePath[0],
-        name: "file",
-        formData: {
-          "filetype": filetype
-        },
-        success: function (res) {
-          var data = res.data;
-          console.log(res);
-          //do something
-        }
-      });
-    }
-  })
-
-  
-}
-
-//}}} end 上传文件

@@ -1,3 +1,4 @@
+var util = require('../../utils/util.js');  
 Page({
 
   /**
@@ -15,10 +16,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    util.getUserId();
     wx.request({
       url: 'https://xcx.heyukj.com/index.php/Portal/Order/orderList',
       data: {
-
+        user_id:wx.getStorageSync('userid')
       },
       method: 'POST',
       header: {

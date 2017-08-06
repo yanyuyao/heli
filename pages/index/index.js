@@ -1,3 +1,4 @@
+var util = require('../../utils/util.js');  
 Page({
 
   /**
@@ -15,6 +16,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    util.getUserId();
+    console.log('----- index onload ----');
+    console.log('user id ' + wx.getStorageSync('userid'));
     var that = this;
     wx.request({
       url: 'https://xcx.heyukj.com/index.php/Portal/Interface/bannerList',
