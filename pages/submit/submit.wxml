@@ -1,16 +1,16 @@
 <form bindsubmit="formSubmit">
     <view class="contain">
-      <input id="companyname" name="companyname" type="text" placeholder="姓名/公司名称" bindinput="namevalue"></input>
-      <input id="phone" name="phone" type="number" placeholder="手机号" bindblur="telvalue" maxlength="11"></input>
+      <input id="companyname" name="companyname" type="text" placeholder="姓名/公司名称" bindinput="namevalue" value="{{order_names}}"></input>
+      <input id="phone" name="phone" type="number" placeholder="手机号" bindblur="telvalue" maxlength="11" value="{{order_tel}}"></input>
       <view class="card {{soundactive}}" bindtap="soundcardtap">语音咨询</view>
       <view class="card {{textactive}}" bindtap="textcardtap">文字咨询</view>
       <view class="sound" style="display:{{sounddisplay}}">
         <button size="mini" bindlongtap="soundtap" bindtouchend="soundtapend">录音</button>
       </view>
       <view class="text" style="display:{{textdisplay}}">
-        <textarea placeholder="" id="zixun_text" name="zixun_text"/>
+        <textarea placeholder="" id="zixun_text" name="zixun_text" value="{{order_tconsult}}"/>
       </view>
-      <input id="email" name="email" type="text" placeholder="邮箱"></input>
+      <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
       <view class="paytype">
         支付方式：微信支付
       </view>

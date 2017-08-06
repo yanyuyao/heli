@@ -11,7 +11,7 @@ App({
     wx.getUserInfo({
       withCredentials: false,
       success: function (res) {
-        this.globalData.userInfo = res.userInfo;
+        getApp().globalData.userInfo = res.userInfo;
         wx.setStorageSync('userInfo', res.userInfo);
       }
     });

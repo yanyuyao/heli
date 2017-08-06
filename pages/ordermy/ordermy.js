@@ -9,6 +9,9 @@ Page({
     selectedimg:'',
     selectedprice:'',
     serve_name:'',
+    serve_id:0,
+    order_id:0,
+    orderListCount:0
   },
 
   /**
@@ -30,6 +33,7 @@ Page({
         console.log(res.data);
         that.setData({
           orderList: res.data.data,
+          orderListCount:res.data.data.length
         });
       },
       fail: function () {
@@ -45,9 +49,14 @@ Page({
         selectedimg: s.currentTarget.dataset.img,
         selectedprice: s.currentTarget.dataset.price,
         serve_name: s.currentTarget.dataset.name,
+        serve_id: s.currentTarget.dataset.sid,
+        order_id: s.currentTarget.dataset.oid
       });
+      var redirectUrl = '../submit/submit?order_id=' + that.data.order_id + '&serve_id=' + that.data.serve_id + '&selectedimg=' + that.data.selectedimg + '&selectedprice=' + s.currentTarget.dataset.price + '&serve_name=' + s.currentTarget.dataset.name;
+      console.log(redirectUrl);
+
       wx.redirectTo({
-        url: '../submit/submit?selectedimg=' + that.data.selectedimg + '&selectedprice=' + s.currentTarget.dataset.price + '&serve_name=' + s.currentTarget.dataset.name+''
+        url: redirectUrl
       })
     }
   },

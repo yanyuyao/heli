@@ -6,6 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    order_id:0,
+    order_tel: '',
+    order_names:'',
+    order_email:'',
+    order_vconsult:'',
+    order_tconsult:'',
     serve_id:0,
     selectedimg:'',
     selectedprice:'',
@@ -137,6 +143,7 @@ Page({
           header: { "Content-Type": "application/x-www-form-urlencoded" }, 
           method: "POST", 
           data: { 
+            order_id: this.data.order_id,
             usersession: this.data.usersession,
             users_id: this.data.userid,
             serve_id: this.data.serve_id,
@@ -162,8 +169,9 @@ Page({
                   icon: 'success',
                   duration: 2000
                 });
+                console.log("=== 支付成功后跳转的页面 " + '../success/success/?sid=' + this.data.serve_id);
                 wx.navigateTo({
-                  url:'../success/success'
+                  url:'../success/success/?sid='+this.data.serve_id
                 });
               }else{
               //{{{
@@ -274,12 +282,46 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      this.setData({
+    util.getUserId();
+    this.setData({
       selectedimg:options.selectedimg,
       selectedprice:options.selectedprice,
       serve_id: options.serve_id,
-      serve_name: options.serve_name
+      serve_name: options.serve_name,
+      order_id: options.order_id
     });
+    if (options.order_id != 'undefined' && options.order_id >0){
+      console.log('====== order Info =====');
+      var that = this;
+        wx.request({
+          url: 'https://xcx.heyukj.com/index.php/Portal/Order/orderInfo',
+          data: {
+            user_id: wx.getStorageSync('userid'),
+            order_id: options.order_id
+          },
+          method: 'POST',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          success: function (res) {
+            console.log(res.data);
+            that.setData({
+              order_email: res.data.data.order_email,
+              order_tel: res.data.data.order_tel,
+              order_names: res.data.data.names,
+              order_tconsult: res.data.data.order_tconsult,
+              order_vconsult: res.data.data.order_vconsult
+            });
+          },
+          fail: function () {
+
+          }
+        })
+    }else{
+      this.setData({
+        order_id: 0
+      });
+    }
   },
 
   /**
