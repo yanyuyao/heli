@@ -22,9 +22,9 @@
   打赏我们哟！！
 </view>
 <view class="pop" style="display:{{popdisplay}};">
-  <input type="number" placeholder="输入打赏金额"/>
-  <view class="button cancel">取消</view>
-  <view class="button confirm">确定</view>
+  <input type="number" placeholder="输入打赏金额" bindinput="tipnumber"/>
+  <view class="button cancel" bindtap="tiphide">取消</view>
+  <view class="button confirm" bindtap="tippay">确定</view>
 </view>
 
 
