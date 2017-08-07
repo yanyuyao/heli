@@ -14,7 +14,19 @@
   position:absolute; top:55px; left:5px;
 }
 .right{
-  width:20%; height:70px; line-height:70px; float: right; text-align: center; font-size:1rem; border:1px solid #ccc; border-radius:50px;
+  width:20%; height:70px; color:#fff; line-height:70px; float: right; text-align: center; font-size:1rem; border:1px solid #ccc; border-radius:50px;
+}
+.red{
+  background-color:#E51C23;
+}
+.green{
+  background-color:#48C23D;
+}
+.blue{
+  background-color:#0A79B8;
+}
+.gray{
+  background-color:#ccc;
 }
 
 .button-k{

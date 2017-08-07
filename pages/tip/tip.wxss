@@ -14,7 +14,7 @@ text{
   width:200px; height:200px;
 }
 .code view{
-  width:100%; text-align:left; font-size:0.9rem; margin-left:10%;
+  width:90%; text-align:left; font-size:0.9rem; margin-left:10%;
 }
 .footer{
   width:100%; line-height:50px; background-color:#E51C23; color:#fff; font-size:1rem; font-weight:bold; text-align: center; position: fixed; bottom:0; left:0;

@@ -12,7 +12,7 @@
       </view>
       <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
       <view class="paytype">
-        支付方式：微信支付
+        支付方式：<icon class="paytypeicon" size="15" type="success" /> 微信支付
       </view>
     </view>
 
