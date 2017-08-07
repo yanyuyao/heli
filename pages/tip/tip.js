@@ -41,7 +41,7 @@ Page({
           success: function (res) {
             console.log(res.data);
             if(res.data.status == 1001){
-              var tipid = res.data.datas.tipid;
+              var tipid = res.data.data.tipid;
               //{{{微信支付
               var reswxData = res.data.wxorder;
 
@@ -65,8 +65,8 @@ Page({
                     wx.request({
                       url: 'https://xcx.heyukj.com/index.php/Portal/Order/payTipOrder',
                       data: {
-                        order_id: order_id,
-                        status: 2
+                        tid: tipid,
+                        status: 1
                       },
                       method: 'POST',
                       header: {
