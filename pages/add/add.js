@@ -19,13 +19,16 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
+        console.log('==== 保存头像文件 ====');
+        console.log(res.tempFilePath);
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         that.setData({
           headimg: res.tempFilePaths
         });  
         console.log("file path==>"+res.tempFilePaths);
-        console.log('==== 保存头像文件 ====');
-        util.uploadFileToServer(res.tempFilePaths[0], 'images');
+        
+        util.uploadFileToServer(res.tempFilePaths[0], 'xcx_aratar');
+        //this.data.setData({ headimg:wx.getStorageSync('useravatar')});
       }
     })
   },
@@ -140,6 +143,7 @@ Page({
         });
       setTimeout(function () { wx.hideToast() }, 2000); 
     }else{
+      console.log('user avatar path:' + wx.getStorageSync('useravatar'));
       wx.request({
         url: 'https://xcx.heyukj.com/index.php/Portal/Interface/addus',
         header: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -147,7 +151,8 @@ Page({
         data: {
           user_id: 6,
           addus_name:e.detail.value.name,
-          addus_url:this.data.headimg,
+          //addus_url:this.data.headimg,
+          addus_url: wx.getStorageSync('useravatar'),
           addus_sex:e.detail.value.sex,
           addus_height:e.detail.value.height,
           addus_birthday:this.data.date,
@@ -162,7 +167,7 @@ Page({
           addus_post: e.detail.value.post,
         },
         success: function (res) {
-          console.log('创建订单成功');
+          console.log('提交成功');
           console.log(res);
           if (res.data.status == 1003) {
             wx.showToast({

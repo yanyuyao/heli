@@ -107,15 +107,42 @@ function uploadFileToServer(tempFilePaths, filetype) {
           "filetype": filetype
         },
         success: function (res) {
-          wx.showModal({
-            title: '上传文件成功'
-          });
           var data = res.data;
-          console.log(res);
+          console.log("上传成功返回值");
+          console.log(data);
+          data = eval('(' + data + ')');
+          console.log(data);
+          if (data.status == 1001 && data.url != ''){
+            if (filetype == 'xcx_aratar'){
+              wx.setStorageSync('useravatar', data.url);
+            }else if (filetype == 'sounds'){
+              wx.setStorageSync('ordersounds', data.url);
+            }
+          }
+          /*else{
+            wx.showToast(
+              {
+                title: '上传失败rrr!',
+                icon: '',
+                image: '../../images/warn.png',
+                duration: 1500
+              });
+            setTimeout(function () { wx.hideToast() }, 2000); 
+          }
+          */
           //do something
+          wx.showToast(
+            {
+              title: '上传成功!',
+              icon: '',
+              image: '../../images/warn.png',
+              duration: 1500
+            });
+          setTimeout(function () { wx.hideToast() }, 2000); 
+
         },
         fail:function(res){
-          console.log(res);
+          //console.log(res);
           wx.showModal({
             title: '上传文件失败'
           });
