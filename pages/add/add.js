@@ -1,3 +1,4 @@
+var util = require('../../utils/util.js');  
 Page({
 
   /**
@@ -21,8 +22,10 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         that.setData({
           headimg: res.tempFilePaths
-        })  
-          
+        });  
+        console.log("file path==>"+res.tempFilePaths);
+        console.log('==== 保存头像文件 ====');
+        util.uploadFileToServer(res.tempFilePaths[0], 'images');
       }
     })
   },

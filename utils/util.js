@@ -100,16 +100,25 @@ function uploadFileToServer(tempFilePaths, filetype) {
       console.log("====== save file path =======");
       console.log("==== save file path : " + savedFilePath);
       wx.uploadFile({
-        url: 'http://xcx.heyukj.com/index.php/Portal/Order/uploadfiles',
-        filePath: savedFilePath[0],
+        url: 'https://xcx.heyukj.com/index.php/Portal/Order/uploadfiles',
+        filePath: savedFilePath,
         name: "file",
         formData: {
           "filetype": filetype
         },
         success: function (res) {
+          wx.showModal({
+            title: '上传文件成功'
+          });
           var data = res.data;
           console.log(res);
           //do something
+        },
+        fail:function(res){
+          console.log(res);
+          wx.showModal({
+            title: '上传文件失败'
+          });
         }
       });
     }
