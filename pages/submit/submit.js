@@ -59,7 +59,7 @@ Page({
     wx.startRecord({
       success:function(res){
         that.setData({
-          soundfile:res.tempFilePath
+          soundfile: res.tempFilePath
         });
         /*wx.saveFile({
           tempFilePath: res.tempFilePath[0],
@@ -69,8 +69,9 @@ Page({
           }
         })
         */
-        console.log(res.tempFilePath);
+
         console.log('==== 保存录音文件 ====');
+        console.log(res.tempFilePath);
         util.uploadFileToServer(res.tempFilePath,'sounds');
         
       }
@@ -152,7 +153,7 @@ Page({
             amount: this.data.selectedprice,
             //amount: 0,
             names:e.detail.value.companyname,
-            order_vconsult: this.data.soundfile,
+            order_vconsult: wx.getStorageSync('ordersounds'),
             order_tconsult: e.detail.value.zixun_text,
             order_tel: e.detail.value.phone, 
             order_email: e.detail.value.email 
@@ -167,7 +168,7 @@ Page({
                 wx.showToast({
                   title: "支付成功...",//这里打印出登录成功           
                   icon: 'success',
-                  duration: 2000
+                  duration: 2000  
                 });
                 console.log("=== 支付成功后跳转的页面 " + '../success/success/?sid=' + this.data.serve_id);
                 wx.navigateTo({
