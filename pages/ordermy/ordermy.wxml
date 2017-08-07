@@ -2,7 +2,7 @@
   <view class="single">
     <image src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
     <view class="center">
-      <view class="center-bt">{{item.serve_name}} {{item.serve_title}}</view>
+      <view class="center-bt">{{item.serve_name}}</view>
       <view class="center-price">￥{{item.serve_price}}.00</view>
     </view>
     <view class="right" wx:if="{{item.status==1}}" id="1" bindtap="paytap" data-oid="{{item.order_id}}" data-sid="{{item.serve_id}}" data-img="https://xcx.heyukj.com/{{item.serve_url}}" data-price="{{item.serve_price}}" data-name="{{item.serve_name}}">未支付</view>

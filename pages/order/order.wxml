@@ -1,8 +1,11 @@
 <view class="view2">
   <view wx:for="{{serveList}}">
     <image class="image" src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
-    <text class="bt">{{item.serve_name}} {{item.serve_title}}</text>
+    <text class="bt">{{item.serve_name}}</text>
     <image class="add" id="{{item.serve_id}}" data-serveid="{{item.serve_id}}" data-servename="{{item.serve_name}}" data-price="{{item.serve_price}}" data-img="https://xcx.heyukj.com/{{item.serve_url}}" bindtap="addtap" src="../../images/plus.png"></image>
+    <view class="text">
+      <text>{{item.serve_content}}</text>
+    </view>
   </view>
 </view>
 <view class="footer" style="display:{{footerdisplay}}">

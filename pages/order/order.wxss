@@ -2,14 +2,18 @@
   width:100%;
 }
 .bt{
-  width:85%; line-height: 50px; font-size:0.8rem; text-align: center; float:left; color:#555; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  width:85%; line-height: 50px; font-size:0.9rem; font-weight:bold; text-align: center; float:left; color:#555; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 .add{
   width:23px; height:23px; float: right; margin:14px 5% 0 0;
 }
 .view2{
-  margin-bottom:110px;
+  margin-bottom:70px;
 }
+.text{
+  width:94%; padding:5px 3%; clear: both; font-size:0.8rem; word-break: break-all; line-height:1.1rem;
+}
+
 .footer{
   width:100%; height:50px; font-size:0.8rem; line-height:50px; background-color:#E51C23; color:#fff; clear:both; position:fixed; bottom:0; left:0;
 }
@@ -25,3 +29,12 @@
 .confirm-right{
   float:right;
 }
+
+
+
+
+
+
+
+
+
