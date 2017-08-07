@@ -25,6 +25,7 @@ Page({
     })
   },
   tippay: function(){
+    var that = this;
     console.log('==== 打赏 =====');
     if (wx.getStorageSync('usersession')){
         wx.request({
@@ -40,6 +41,10 @@ Page({
           },
           success: function (res) {
             console.log(res.data);
+            console.log('==== tippay success ====');
+            that.setData({
+              popdisplay: 'none',
+            });
             if(res.data.status == 1001){
               var tipid = res.data.data.tipid;
               //{{{微信支付
@@ -78,6 +83,7 @@ Page({
                           icon: 'success',
                           duration: 2000
                         });
+                        
                         //wx.navigateTo({
                         //  url: '../success/success'
                         //});
@@ -93,6 +99,7 @@ Page({
                       icon: 'error',
                       duration: 2000
                     });
+                    
                     //console.log(res);
                   },
                   'complete': function (res) {
@@ -111,6 +118,7 @@ Page({
                   icon: 'error',
                   duration: 2000
                 });
+                
               }
               //}}} end 微信支付
             }else{
