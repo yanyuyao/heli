@@ -23,8 +23,11 @@ Page({
     soundfile:'',
     usersession: wx.getStorageSync('usersession'),
     userid: wx.getStorageSync('userid'),
+    audioCtx:''
   },
-  
+  audioPlay: function () {
+    this.audioCtx.play()
+  },
   /**
      * 生命周期函数--监听页面加载
      */
@@ -136,8 +139,8 @@ Page({
     } else {
         //console.log('create order');
         //console.log(this.data.serve_name);
-        
-      if(this.data.usersession){
+      var usersession = wx.getStorageSync('usersession');
+      if(usersession){
        
         wx.request({
           url: 'https://xcx.heyukj.com/Portal/Order/createOrder', 
@@ -145,7 +148,7 @@ Page({
           method: "POST", 
           data: { 
             order_id: this.data.order_id,
-            usersession: this.data.usersession,
+            usersession: usersession,
             users_id: this.data.userid,
             serve_id: this.data.serve_id,
             serve_name: this.data.serve_name,
@@ -329,7 +332,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    this.audioCtx = wx.createAudioContext('myAudio')
   },
 
   /**

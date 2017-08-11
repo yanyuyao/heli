@@ -11,6 +11,9 @@
         <textarea placeholder="" id="zixun_text" name="zixun_text" value="{{order_tconsult}}"/>
       </view>
       <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
+      <view class="text" style="padding:10px;">
+        <audio src="https://xcx.heyukj.com/data/upload/sounds/598c333898318.mp3" id="myAudio" bindtap="audioPlay"><image style="width:30px;height:30px;margin-bottom:-8px;" src="https://xcx.heyukj.com/data/playon_fill.png" ></image>录音示例</audio>
+      </view>
       <view class="paytype">
         支付方式：<icon class="paytypeicon" size="15" type="success" /> 微信支付
       </view>

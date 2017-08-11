@@ -44,3 +44,9 @@
     </view>
   </view>
 </form>
+<navigator url="../about/about">
+  <view class="list" style="text-align:center;">
+    <image src="../../images/about.png"></image>
+    关于我们
+  </view>
+</navigator>

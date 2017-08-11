@@ -32,13 +32,6 @@
     <view class="list-right">>></view>
   </view>
 </navigator>
-<navigator url="../about/about">
-  <view class="list">
-    <image src="../../images/about.png"></image>
-    关于我们
-    <view class="list-right">>></view>
-  </view>
-</navigator>
 
 
 
