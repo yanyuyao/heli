@@ -25,7 +25,9 @@ label{
 button[size="mini"].button{
   width:80%; line-height:35px; height:35px; background-color:#E51C23; color:#fff; margin:30px auto 0; font-size:0.8rem;
 }
-
+.phone{
+  width:100%; text-align: center; line-height: 1.2rem; font-size:0.9rem; margin:20px auto;
+}
 
 
 

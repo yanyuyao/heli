@@ -40,6 +40,8 @@ Page({
     }) 
   }, 
 
+
+
   /**提交支付 */
   formSubmit: function (e) {
     var that = this;
@@ -188,7 +190,12 @@ Page({
     }
   },
 
-
+  /**打电话 */
+  phonetap:function(){
+    wx.makePhoneCall({
+      phoneNumber: '18611599099',
+    })
+  },
 
 
 

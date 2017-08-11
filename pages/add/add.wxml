@@ -38,15 +38,12 @@
     </view>
     <view class="buttonk">
       <button size="mini" class="button" form-type="submit">提交</button>
-      <navigator url="../index/index">
-        <button size="mini" class="button">返回首页</button>
+      <navigator url="../about/about">
+        <button size="mini" class="button">关于我们</button>
       </navigator>
     </view>
   </view>
 </form>
-<navigator url="../about/about">
-  <view class="list" style="text-align:center;">
-    <image src="../../images/about.png"></image>
-    关于我们
-  </view>
-</navigator>
+<view class="phone" bindtap="phonetap">
+  投资与合作服务电话: 18611599099
+</view>
