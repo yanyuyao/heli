@@ -14,16 +14,25 @@
   position:absolute; top:55px; left:5px;
 }
 .right{
-  width:20%; height:70px; color:#fff; line-height:70px; float: right; text-align: center; font-size:1rem; border:1px solid #ccc; border-radius:50px;
+  width:20%; height:70px; color:#fff; line-height:35px; float: right; text-align: center; font-size:0.9rem; border:1px solid #ccc; border-radius:50px;
+}
+.right-contact{
+  width:20%; height:70px; line-height:35px; float: right; text-align: center; font-size:1rem; font-weight:bold;
+}
+.right-pay{
+  line-height:70px;
+}
+button[size="mini"].ordermybutton{
+  padding:0 3px; line-height:1.1rem; font-size:0.7rem;
 }
 .red{
   background-color:#E51C23;
 }
 .green{
-  background-color:#48C23D;
+  color:#48C23D;
 }
 .blue{
-  background-color:#0A79B8;
+  color:#0A79B8;
 }
 .gray{
   background-color:#ccc;

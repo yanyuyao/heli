@@ -1,9 +1,6 @@
 <view class="contain">
   <text class="text">
-     河狸咨询由南通河狸机械科技有限公司于2017年创建，通过一流的专家团队，先进的线上线下调研方案，为用户提供完美的咨询服务。
-  </text>
-  <text class="text">   
-     河狸咨询坚持贯彻“坦诚的笑容”为员工的行为标准，以“合作式服务”为原则，提供更权威，更真实，更具体的新型咨询服务体验。
+     {{abouttext}}
   </text>
   <view class="footer">
     <text>

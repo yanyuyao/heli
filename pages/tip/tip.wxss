@@ -1,5 +1,5 @@
 .contain{
-  width:94%; margin:0 3%; margin-bottom:50px;
+  width:100%; margin-bottom:50px;
 }
 .img1{
   width:100%; margin:10px 0;

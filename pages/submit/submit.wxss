@@ -11,8 +11,23 @@
   width: 100%; border-top:1px solid #ccc; border-bottom:1px solid #ccc; height:100px; clear:both; text-align: center; margin-bottom:5px;
 }
 .sound button{
-  width:23%; height:35px; line-height:35px; margin:32px auto;
+  width:40%; height:35px; line-height:35px; margin:32px auto;
 }
+.sound audio{
+  width:30%; float: left; margin-left: 3%;
+}
+.sound audio button{
+  width:100%;
+}
+button.shitingbutton{
+  width:30%; height:35px; line-height:35px; margin:32px auto; margin-left:2%; float: left;
+}
+.shitingconfirm audio{
+  width:70%; float:none;
+}
+
+
+
 .text{
   width: 100%; border-top:1px solid #ccc; border-bottom:1px solid #ccc; clear:both; text-align:left; margin-bottom: 5px;
 }
@@ -51,8 +66,15 @@ button::after{
   width:0; height:0;
 }
 
-
-
+.shili{
+  width:96%; padding:0 2%; border-bottom:1px solid #ccc; line-height:40px; font-size:0.8rem; background-color:#f2f2f2;
+}
+.shili audio{
+  width:100%;
+}
+.shili audio image{
+  width:25px; height:25px; vertical-align: middle; margin:-5px 1rem 0 0;
+}
 
 
 

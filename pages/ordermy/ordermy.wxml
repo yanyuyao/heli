@@ -5,10 +5,16 @@
       <view class="center-bt">{{item.serve_name}}</view>
       <view class="center-price">￥{{item.serve_price}}.00</view>
     </view>
-    <view class="right red" wx:if="{{item.status==1}}" id="1" bindtap="paytap" data-oid="{{item.order_id}}" data-sid="{{item.serve_id}}" data-img="https://xcx.heyukj.com/{{item.serve_url}}" data-price="{{item.serve_price}}" data-name="{{item.serve_name}}">未支付</view>
-    <view class="right green" wx:elif="{{item.status==2}}" id="2" bindtap="paytap">已支付</view>
-    <view class="right blue" wx:elif="{{item.status==3}}" id="3" bindtap="paytap">已处理</view> 
-    <view class="right gray" wx:elif="{{item.status==4}}" id="4" bindtap="paytap">已完成</view>
+    <view class="right right-pay red" wx:if="{{item.status==1}}" id="1" bindtap="paytap" data-oid="{{item.order_id}}" data-sid="{{item.serve_id}}" data-img="https://xcx.heyukj.com/{{item.serve_url}}" data-price="{{item.serve_price}}" data-name="{{item.serve_name}}">未支付</view>
+    <view class="right-contact green" wx:elif="{{item.status==2}}" id="2">
+      已支付
+      <contact-button size="40" type="default-dark"></contact-button>  
+    </view>
+    <view class="right-contact blue" wx:elif="{{item.status==3}}" id="3" bindtap="ordermytap">
+      已处理
+      <contact-button size="40" type="default-dark"></contact-button>
+      </view> 
+    <view class="right gray" wx:elif="{{item.status==4}}" id="4">已完成</view>
     <view class="clear"></view>
   </view>
 </view>

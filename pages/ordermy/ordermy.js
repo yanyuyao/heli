@@ -41,25 +41,24 @@ Page({
       }
     })
   },
-
+  /** 未支付订单 点击跳转支付*/
   paytap:function(s){
-    if (s.currentTarget.id==1){
-      var that = this;
-      that.setData({
-        selectedimg: s.currentTarget.dataset.img,
-        selectedprice: s.currentTarget.dataset.price,
-        serve_name: s.currentTarget.dataset.name,
-        serve_id: s.currentTarget.dataset.sid,
-        order_id: s.currentTarget.dataset.oid
-      });
-      var redirectUrl = '../submit/submit?order_id=' + that.data.order_id + '&serve_id=' + that.data.serve_id + '&selectedimg=' + that.data.selectedimg + '&selectedprice=' + s.currentTarget.dataset.price + '&serve_name=' + s.currentTarget.dataset.name;
-      console.log(redirectUrl);
+    var that = this;
+    that.setData({
+      selectedimg: s.currentTarget.dataset.img,
+      selectedprice: s.currentTarget.dataset.price,
+      serve_name: s.currentTarget.dataset.name,
+      serve_id: s.currentTarget.dataset.sid,
+      order_id: s.currentTarget.dataset.oid
+    });
+    var redirectUrl = '../submit/submit?order_id=' + that.data.order_id + '&serve_id=' + that.data.serve_id + '&selectedimg=' + that.data.selectedimg + '&selectedprice=' + s.currentTarget.dataset.price + '&serve_name=' + s.currentTarget.dataset.name;
+    console.log(redirectUrl);
 
-      wx.redirectTo({
-        url: redirectUrl
-      })
-    }
+    wx.redirectTo({
+      url: redirectUrl
+    })  
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

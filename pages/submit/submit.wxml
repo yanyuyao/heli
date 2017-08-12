@@ -5,15 +5,33 @@
       <view class="card {{soundactive}}" bindtap="soundcardtap">语音咨询</view>
       <view class="card {{textactive}}" bindtap="textcardtap">文字咨询</view>
       <view class="sound" style="display:{{sounddisplay}}">
-        <button size="mini" bindlongtap="soundtap" bindtouchend="soundtapend">录音</button>
+        <button size="mini" bindlongtap="soundtap" bindtouchend="soundtapend" style="display:{{luyindisplay}}">录音</button>
+        <view style="display:{{shitingdisplay}}">
+          <audio src="{{soundfile}}" bindtap="silkPlay" data-src="{{soundfile}}" id="myAudio">
+            <button class="shitingbutton" size="mini">试听</button>
+          </audio>
+          <button class="shitingbutton" size="mini" bindtap="deletetap">删除重录</button>
+          <button class="shitingbutton" size="mini" bindtap="confirmtap">确定上传</button>
+        </view>
+        <view style="display:{{confirmdisplay}};" class="shitingconfirm">
+          <audio src="{{soundfile}}" bindtap="silkPlay" id="shitingconfirm" data-src="{{soundfile}}">
+            <button>录音已上传</button>
+          </audio>
+        </view>
       </view>
       <view class="text" style="display:{{textdisplay}}">
         <textarea placeholder="" id="zixun_text" name="zixun_text" value="{{order_tconsult}}"/>
       </view>
-      <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
-      <view class="text" style="padding:10px;">
-        <audio src="https://xcx.heyukj.com/data/upload/sounds/598c333898318.mp3" id="myAudio" bindtap="audioPlay"><image style="width:30px;height:30px;margin-bottom:-8px;" src="https://xcx.heyukj.com/data/playon_fill.png" ></image>录音示例</audio>
+      <view wx:for="{{shililist}}">
+        <view class="shili">
+          <audio src="https://xcx.heyukj.com/{{item.vsample_url}}" bindtap="audioPlay" id="audio_{{item.vsample_id}}" data-src="https://xcx.heyukj.com/{{item.vsample_url}}">
+            <image src="https://xcx.heyukj.com/data/playon_fill.png"></image>
+            {{item.title}}
+          </audio>
+        </view>
       </view>
+      <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
+      
       <view class="paytype">
         支付方式：<icon class="paytypeicon" size="15" type="success" /> 微信支付
       </view>

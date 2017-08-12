@@ -23,23 +23,25 @@ Page({
     soundfile:'',
     usersession: wx.getStorageSync('usersession'),
     userid: wx.getStorageSync('userid'),
-    audioCtx:''
+    audioCtx:'',
+    luyindisplay:'block',
+    shitingdisplay:"none",
+    shililist:[],
+    confirmdisplay:'none',
   },
-  audioPlay: function () {
-    this.audioCtx.play()
+  audioPlay: function (e) {
+    this.audioCtx.pause();
+    var curplayid = e.currentTarget.id;
+    console.log(curplayid);
+    this.audioCtx = wx.createAudioContext(curplayid);
+    this.audioCtx.play();
+    /**
+    wx.playVoice({
+      filePath: e.currentTarget.dataset.src,
+    })*/
   },
-  /**
-     * 生命周期函数--监听页面加载
-     */
-  onLoad: function (options) {
-    this.setData({
-      selectedimg: options.selectedimg,
-      selectedprice: options.selectedprice,
-      serve_id: options.serve_id,
-      serve_name: options.serve_name
-    })
-  },
-	
+
+ 
   /**选项卡切换 */
   soundcardtap:function(){
     this.setData({
@@ -60,10 +62,15 @@ Page({
   soundtap:function(){
     var that = this;
     wx.startRecord({
-      success:function(res){
+      success: function (res) {
         that.setData({
           soundfile: res.tempFilePath
         });
+        setTimeout(function () {
+          //暂停播放
+          wx.stopRecord()
+        }, 59000)
+        console.log(that.data.soundfile);
         /*wx.saveFile({
           tempFilePath: res.tempFilePath[0],
           success: function (res) {
@@ -75,11 +82,13 @@ Page({
 
         console.log('==== 保存录音文件 ====');
         console.log(res.tempFilePath);
-        util.uploadFileToServer(res.tempFilePath,'sounds');
-        
+       
+
       }
-    })    
+    })
   },
+  
+
   soundtapend: function () {
     wx.stopRecord();
     wx.showToast({
@@ -87,8 +96,43 @@ Page({
       icon: 'success',
       duration: 2000
     })
+    this.setData({
+      luyindisplay: 'none',
+      shitingdisplay: "block",
+    })
 
   },
+  /**试听录音文件 */
+  silkPlay: function () {
+    console.log('录音文件路径' + this.data.soundfile);
+    var that = this;
+    wx.playVoice({
+      filePath:that.data.soundfile,
+      complete:function(){
+        console.log('试听录音文件成功');
+      }
+    })
+  },
+
+  /** 录音删除重录 */
+  deletetap:function(){
+    this.setData({
+      luyindisplay: 'block',
+      shitingdisplay: "none",
+      confirmdisplay:'none',
+    })
+  },
+
+  /** 录音确认上传 */
+  confirmtap:function(){
+    this.setData({
+      confirmdisplay:'block',
+      shitingdisplay:'none',
+    })
+    util.uploadFileToServer(soundfile, 'sounds');
+  },
+
+
   /**
    * 提交订单
    */
@@ -326,13 +370,35 @@ Page({
         order_id: 0
       });
     }
+
+    var that = this;
+    wx.request({
+      url: 'https://xcx.heyukj.com/index.php/Portal/Interface/VsampleList',
+      data: {
+
+      },
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        console.log("录音示例文件列表");
+        console.log(res);
+        that.setData({
+          shililist:res.data.data
+        });
+      },
+      fail: function () {
+        console.log("获取录音示例文件列表失败");
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioCtx = wx.createAudioContext("myAudio");
   },
 
   /**

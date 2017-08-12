@@ -7,7 +7,10 @@ Page({
    */
   data: {
     popdisplay:'none',
-    tipnum:0
+    tipnum:0,
+    tipimg:'',
+    imagewidth:0,
+    imageheight:0,
   },
 
   tiptap:function(){
@@ -138,6 +141,32 @@ Page({
    */
   onLoad: function (options) {
     util.getUserId();
+    
+    var that = this;
+    wx.request({
+      url: 'https://xcx.heyukj.com/index.php/Portal/Interface/getReward',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      method: "POST",
+      data: {
+
+      },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          tipimg: res.data.reward_url,
+        })
+      }
+    });
+
+  },
+
+  imageLoad: function (e) {
+    var imageUtil = require('../../utils/util.js');
+    var imageSize = imageUtil.imageUtil(e)
+    this.setData({
+      imagewidth: imageSize.imageWidth,
+      imageheight: imageSize.imageHeight
+    })
   },
 
   /**
