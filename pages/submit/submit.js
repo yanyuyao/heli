@@ -28,6 +28,7 @@ Page({
     shitingdisplay:"none",
     shililist:[],
     confirmdisplay:'none',
+    audioimgsrc:'../../images/yuyin.png',
   },
   audioPlay: function (e) {
     this.audioCtx.pause();
@@ -40,7 +41,7 @@ Page({
       filePath: e.currentTarget.dataset.src,
     })*/
   },
-
+ 
  
   /**选项卡切换 */
   soundcardtap:function(){
@@ -179,6 +180,13 @@ Page({
           image: '../../images/warn.png',
           duration: 1500
         });    
+        setTimeout(function () { wx.hideToast() }, 2000) 
+    } else if(e.detail.value.shengming.length == 0){
+        wx.showToast({
+          title: '请勾选同意免责声明！', icon: '',
+          image: '../../images/warn.png',
+          duration: 1500
+        });
         setTimeout(function () { wx.hideToast() }, 2000) 
     } else {
         //console.log('create order');

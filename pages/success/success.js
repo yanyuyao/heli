@@ -22,7 +22,7 @@ Page({
       url: 'https://xcx.heyukj.com/index.php/Portal/Order/getServeSuccess',
       data: {
         user_id: wx.getStorageSync('userid'),
-        serve_id: options.sid
+        serve_id: options.sid,
       },
       method: 'POST',
       header: {

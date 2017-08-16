@@ -9,6 +9,8 @@ Page({
     serveList:[],
     selectedimg:'',
     selectedprice:'',
+    singleheight:'',
+    lcimgheight:'',
   },
 
   /**
@@ -16,6 +18,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          singleheight:res.windowHeight,
+          lcimgheight: res.windowHeight-170,
+        })
+      },
+    })
+    console.log(this.data.singleheight);
+    
     util.getUserId();
     wx.request({
       url: 'https://xcx.heyukj.com/index.php/Portal/Interface/serveList',
@@ -49,6 +61,16 @@ Page({
     });
     util.userServiceStatus(this, e.currentTarget.dataset.serveid);
   },
+
+  bodytap:function(){
+    console.log(this.data.footerdisplay);
+    if(this.data.footerdisplay == 'block'){
+      this.setData({
+        footerdisplay:"none"
+      })
+    }
+  },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

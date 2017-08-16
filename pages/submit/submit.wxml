@@ -1,21 +1,21 @@
 <form bindsubmit="formSubmit">
     <view class="contain">
-      <input id="companyname" name="companyname" type="text" placeholder="姓名/公司名称" bindinput="namevalue" value="{{order_names}}"></input>
-      <input id="phone" name="phone" type="number" placeholder="手机号" bindblur="telvalue" maxlength="11" value="{{order_tel}}"></input>
       <view class="card {{soundactive}}" bindtap="soundcardtap">语音咨询</view>
       <view class="card {{textactive}}" bindtap="textcardtap">文字咨询</view>
       <view class="sound" style="display:{{sounddisplay}}">
-        <button size="mini" bindlongtap="soundtap" bindtouchend="soundtapend" style="display:{{luyindisplay}}">录音</button>
+        <button size="mini" bindlongtap="soundtap" bindtouchend="soundtapend" style="display:{{luyindisplay}}">
+          <image src="../../images/luyin.png"></image>
+        </button>
         <view style="display:{{shitingdisplay}}">
-          <audio src="{{soundfile}}" bindtap="silkPlay" data-src="{{soundfile}}" id="myAudio">
-            <button class="shitingbutton" size="mini">试听</button>
-          </audio>
-          <button class="shitingbutton" size="mini" bindtap="deletetap">删除重录</button>
-          <button class="shitingbutton" size="mini" bindtap="confirmtap">确定上传</button>
+          <!--<audio src="{{soundfile}}" bindtap="silkPlay" data-src="{{soundfile}}" id="myAudio">-->
+            <button class="shitingbutton" size="mini" bindtap="silkPlay">试听</button>
+          <!--</audio>-->
+          <button class="shitingbutton" size="mini" bindtap="deletetap">删除</button>
+          <button class="shitingbutton" size="mini" bindtap="confirmtap">上传</button>
         </view>
         <view style="display:{{confirmdisplay}};" class="shitingconfirm">
           <audio src="{{soundfile}}" bindtap="silkPlay" id="shitingconfirm" data-src="{{soundfile}}">
-            <button>录音已上传</button>
+            <button>上传成功</button>
           </audio>
         </view>
       </view>
@@ -24,16 +24,24 @@
       </view>
       <view wx:for="{{shililist}}">
         <view class="shili">
-          <audio src="https://xcx.heyukj.com/{{item.vsample_url}}" bindtap="audioPlay" id="audio_{{item.vsample_id}}" data-src="https://xcx.heyukj.com/{{item.vsample_url}}">
-            <image src="https://xcx.heyukj.com/data/playon_fill.png"></image>
+          <audio src="https://xcx.heyukj.com/{{item.vsample_url}}" bindtap="audioPlay" bindpause="audiostop" bindended="audiostop" id="audio_{{item.vsample_id}}" data-src="https://xcx.heyukj.com/{{item.vsample_url}}">
+            <image src="{{audioimgsrc}}"></image>
             {{item.title}}
           </audio>
         </view>
       </view>
+      <input id="companyname" name="companyname" type="text" placeholder="姓名/公司名称" bindinput="namevalue" value="{{order_names}}"></input>
+      <input id="phone" name="phone" type="number" placeholder="手机号" bindblur="telvalue" maxlength="11" value="{{order_tel}}"></input>
       <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
       
       <view class="paytype">
         支付方式：<icon class="paytypeicon" size="15" type="success" /> 微信支付
+      </view>
+      <view class="shengming">
+        <checkbox-group name="shengming">
+          <checkbox>我已阅读并同意</checkbox>
+        </checkbox-group>
+        <navigator url="../shengming/shengming">《免责声明》</navigator>
       </view>
     </view>
 
@@ -43,7 +51,8 @@
       <view class="price">￥{{selectedprice}}.00</view>
       <!--<navigator url="../success/success">-->
         <view class="confirm" bindtap="createOrder">
-          <button class="submit" formType="submit">提交并支付</button>
+          <view class="confirm-right">></view>
+          <button size="mini" class="submit" formType="submit">提交并支付</button>
         </view>
      <!--</navigator>-->
     </view>

@@ -1,15 +1,25 @@
-.image{
+.view2{
   width:100%;
 }
+.servesingle{
+  width:100%; background-color: #8A6D35; position: relative;
+}
+.btk{
+  width:100%; text-align:center; line-height:60px;
+}
+.image{
+  width:90%; margin-left:5%;
+}
+.logo{
+  width:30px; height:30px; vertical-align:middle; margin-right:1rem;
+}
 .bt{
-  width:85%; line-height: 50px; font-size:0.9rem; font-weight:bold; text-align: center; float:left; color:#555; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+   line-height: 50px; font-size:0.9rem; font-weight:bold; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-.add{
-  width:23px; height:23px; float: right; margin:14px 5% 0 0;
+button[size="mini"].add{
+  width:130px; height:35px; line-height:35px; float: right;position:absolute; bottom:65px; right:20px; color:#000;
 }
-.view2{
-  margin-bottom:70px;
-}
+
 .text{
   width:94%; padding:5px 3%; clear: both; font-size:0.8rem; word-break: break-all; line-height:1.1rem;
 }
@@ -24,7 +34,7 @@
   width:35%; text-align: center; float:left;
 }
 .confirm{
-  width:40%; float:right; text-align:left; margin:8px 0; border-left:1px solid #f2f2f2; line-height:34px; padding:0 2%;
+  width:30%; float:right; text-align:center; margin:8px 0; border-left:1px solid #f2f2f2; line-height:34px; padding:0 2%;
 }
 .confirm-right{
   float:right;
