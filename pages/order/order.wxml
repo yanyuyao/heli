@@ -1,13 +1,16 @@
 <view class="view2" bindtap="bodytap">
   <swiper vertical="true" class="servesingle" style="height:{{singleheight}}px;">
     <block wx:for="{{serveList}}">
-      <swiper-item>
+      <swiper-item style="background-image:url(https://xcx.heyukj.com{{item.serve_bg}});">
         <view class="btk">
           <image class="logo" src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
           <text class="bt">{{item.serve_name}}</text>
         </view>
-        <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
+        <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://xcx.heyukj.com{{item.serve_process}}"></image>
         <button size="mini" class="add" id="{{item.serve_id}}" data-serveid="{{item.serve_id}}" data-servename="{{item.serve_name}}" data-price="{{item.serve_price}}" data-img="https://xcx.heyukj.com/{{item.serve_url}}" bindtap="addtap">￥{{item.serve_price}}  购买</button>
+        <view class="arrow-k"> 
+          <image class="arrow" mode="widthFix" src="https://xcx.heyukj.com{{item.serve_arrow}}"></image>
+        </view>
       </swiper-item>
     </block>
   </swiper>
@@ -25,7 +28,10 @@
 </view>
 <view class="footer" style="display:{{footerdisplay}}">
   <image src="{{selectedimg}}"></image>
-  <view class="price">￥{{selectedprice}}.00</view>
+  <view class="price">
+    ￥{{selectedprice}}.00
+    <image src="../../images/close.png" class="close" bindtap="closetap"></image>
+    </view>
   <navigator url="../submit/submit?serve_id={{serve_id}}&serve_name={{serve_name}}&selectedimg={{selectedimg}}&selectedprice={{selectedprice}}">
     <view class="confirm">
       选好了
