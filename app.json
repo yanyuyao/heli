@@ -4,11 +4,11 @@
     "pages/about/about",
     "pages/add/add",
     "pages/ordermy/ordermy",
+    "pages/order/order",
     "pages/shengming/shengming",
     "pages/submit/submit",
     "pages/success/success",
-    "pages/tip/tip",
-    "pages/order/order"
+    "pages/tip/tip"
   ],
   "window": {
     "backgroundTextStyle": "light",

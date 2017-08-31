@@ -1,5 +1,6 @@
 var utilMd5 = require('../../utils/md5.js');
 var util = require('../../utils/util.js');  
+var app = getApp;
 Page({
 
   /**
@@ -31,7 +32,10 @@ Page({
     audioimgsrc:'../../images/yuyin.png',
   },
   audioPlay: function (e) {
-    this.audioCtx.pause();
+    console.log(this.audioCtx);
+    if(this.audioCtx !== undefined){
+      this.audioCtx.pause();
+    }
     var curplayid = e.currentTarget.id;
     console.log(curplayid);
     this.audioCtx = wx.createAudioContext(curplayid);
@@ -130,7 +134,7 @@ Page({
       confirmdisplay:'block',
       shitingdisplay:'none',
     })
-    util.uploadFileToServer(soundfile, 'sounds');
+    util.uploadFileToServer(this.data.soundfile, 'sounds');
   },
 
 

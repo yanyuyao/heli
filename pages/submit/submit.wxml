@@ -7,9 +7,9 @@
           <image src="../../images/luyin.png"></image>
         </button>
         <view style="display:{{shitingdisplay}}">
-          <!--<audio src="{{soundfile}}" bindtap="silkPlay" data-src="{{soundfile}}" id="myAudio">-->
+          <audio src="{{soundfile}}" bindtap="silkPlay" data-src="{{soundfile}}" id="myAudio">
             <button class="shitingbutton" size="mini" bindtap="silkPlay">试听</button>
-          <!--</audio>-->
+          </audio>
           <button class="shitingbutton" size="mini" bindtap="deletetap">删除</button>
           <button class="shitingbutton" size="mini" bindtap="confirmtap">上传</button>
         </view>
