@@ -90,7 +90,7 @@ Page({
                         //wx.navigateTo({
                         //  url: '../success/success'
                         //});
-                      }
+                      } 
                     });
                     //}}} 支付成功，修改订单状态
                     //console.log(res);
@@ -99,7 +99,7 @@ Page({
                     //console.log(" === wx request payment fail === ");
                     wx.showToast({
                       title: "打赏失败...",//这里打印出登录成功           
-                      icon: 'error',
+                      icon: 'warn',
                       duration: 2000
                     });
                     

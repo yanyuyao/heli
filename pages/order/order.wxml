@@ -30,7 +30,7 @@
 <view class="footer" style="display:{{footerdisplay}}">
   <image src="{{selectedimg}}"></image>
   <view class="price">
-    ￥{{selectedprice}}.00
+    ￥{{selectedprice}}
     <image src="../../images/close.png" class="close" bindtap="closetap"></image>
     </view>
   <navigator url="../submit/submit?serve_id={{serve_id}}&serve_name={{serve_name}}&selectedimg={{selectedimg}}&selectedprice={{selectedprice}}">

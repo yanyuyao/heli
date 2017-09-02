@@ -48,7 +48,7 @@
 
     <view class="footer" style="display:block;">
       <image src="{{selectedimg}}"></image>
-      <view class="price">￥{{selectedprice}}.00</view>
+      <view class="price">￥{{selectedprice}}</view>
       <!--<navigator url="../success/success">-->
         <view class="confirm" bindtap="createOrder">
           <view class="confirm-right">></view>
