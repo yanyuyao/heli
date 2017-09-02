@@ -19,7 +19,7 @@ Page({
     util.getUserId();
     that.setData({ serve_id: options.sid});
     wx.request({
-      url: 'https://xcx.heyukj.com/index.php/Portal/Order/getServeSuccess',
+      url: 'https://helizixun.cn/index.php/Portal/Order/getServeSuccess',
       data: {
         user_id: wx.getStorageSync('userid'),
         serve_id: options.sid,

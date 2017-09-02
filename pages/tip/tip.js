@@ -32,7 +32,7 @@ Page({
     console.log('==== 打赏 =====');
     if (wx.getStorageSync('usersession')){
         wx.request({
-          url: 'https://xcx.heyukj.com/index.php/Portal/Order/tippay',
+          url: 'https://helizixun.cn/index.php/Portal/Order/tippay',
           data: {
             user_id: wx.getStorageSync('userid'),
             usersession: wx.getStorageSync('usersession'),
@@ -71,7 +71,7 @@ Page({
                     //console.log(" === wx request payment success === ");
                     //{{{支付成功，修改订单状态
                     wx.request({
-                      url: 'https://xcx.heyukj.com/index.php/Portal/Order/payTipOrder',
+                      url: 'https://helizixun.cn/index.php/Portal/Order/payTipOrder',
                       data: {
                         tid: tipid,
                         status: 1
@@ -144,7 +144,7 @@ Page({
     
     var that = this;
     wx.request({
-      url: 'https://xcx.heyukj.com/index.php/Portal/Interface/getReward',
+      url: 'https://helizixun.cn/index.php/Portal/Interface/getReward',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",
       data: {

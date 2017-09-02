@@ -24,7 +24,7 @@
       </view>
       <view wx:for="{{shililist}}">
         <view class="shili">
-          <audio src="https://xcx.heyukj.com/{{item.vsample_url}}" bindtap="audioPlay" bindpause="audiostop" bindended="audiostop" id="audio_{{item.vsample_id}}" data-src="https://xcx.heyukj.com/{{item.vsample_url}}">
+          <audio src="https://helizixun.cn/{{item.vsample_url}}" bindtap="audioPlay" bindpause="audiostop" bindended="audiostop" id="audio_{{item.vsample_id}}" data-src="https://helizixun.cn/{{item.vsample_url}}">
             <image src="{{audioimgsrc}}"></image>
             {{item.title}}
           </audio>

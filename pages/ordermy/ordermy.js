@@ -21,7 +21,7 @@ Page({
     var that = this;
     util.getUserId();
     wx.request({
-      url: 'https://xcx.heyukj.com/index.php/Portal/Order/orderList',
+      url: 'https://helizixun.cn/index.php/Portal/Order/orderList',
       data: {
         user_id:wx.getStorageSync('userid')
       },

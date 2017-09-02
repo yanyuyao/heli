@@ -147,7 +147,7 @@ Page({
     }else{
       console.log('user avatar path:' + wx.getStorageSync('useravatar'));
       wx.request({
-        url: 'https://xcx.heyukj.com/index.php/Portal/Interface/addus',
+        url: 'https://helizixun.cn/index.php/Portal/Interface/addus',
         header: { "Content-Type": "application/x-www-form-urlencoded" },
         method: "POST",
         data: {

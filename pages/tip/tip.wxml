@@ -1,5 +1,5 @@
 <view class="contain">
-  <image style="width:{{imagewidth}}px; height:{{imageheight}}px" bindload="imageLoad" src="https://xcx.heyukj.com/{{tipimg}}"></image>
+  <image style="width:{{imagewidth}}px; height:{{imageheight}}px" bindload="imageLoad" src="https://helizixun.cn/{{tipimg}}"></image>
 </view>
 <view class="footer" bindtap="tiptap">
   打赏我们哟！！

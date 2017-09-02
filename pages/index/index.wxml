@@ -2,7 +2,7 @@
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}">
     <swiper-item>
-      <image src="https://xcx.heyukj.com/{{item.ad_url}}" class="slide-image"/>
+      <image src="https://helizixun.cn/{{item.ad_url}}" class="slide-image"/>
     </swiper-item>
   </block>
 </swiper>

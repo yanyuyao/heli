@@ -2,15 +2,15 @@
   <swiper vertical="true" class="servesingle" style="height:{{singleheight}}px;">
     <block wx:for="{{serveList}}">
       <swiper-item>
-        <image src="https://xcx.heyukj.com{{item.serve_bg}}" class="bgimg"></image>
+        <image src="https://helizixun.cn{{item.serve_bg}}" class="bgimg"></image>
         <view class="btk">
-          <image class="logo" src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
+          <image class="logo" src="https://helizixun.cn/{{item.serve_url}}"></image>
           <text class="bt">{{item.serve_name}}</text>
         </view>
-        <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://xcx.heyukj.com{{item.serve_process}}"></image>
-        <button size="mini" class="add" id="{{item.serve_id}}" data-serveid="{{item.serve_id}}" data-servename="{{item.serve_name}}" data-price="{{item.serve_price}}" data-img="https://xcx.heyukj.com/{{item.serve_url}}" bindtap="addtap">￥{{item.serve_price}}  购买</button>
+        <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://helizixun.cn{{item.serve_process}}"></image>
+        <button size="mini" class="add" id="{{item.serve_id}}" data-serveid="{{item.serve_id}}" data-servename="{{item.serve_name}}" data-price="{{item.serve_price}}" data-img="https://helizixun.cn/{{item.serve_url}}" bindtap="addtap">￥{{item.serve_price}}  购买</button>
         <!--<view class="arrow-k"> 
-          <image class="arrow" mode="widthFix" src="https://xcx.heyukj.com{{item.serve_arrow}}"></image>
+          <image class="arrow" mode="widthFix" src="https://helizixun.cn{{item.serve_arrow}}"></image>
         </view>-->
       </swiper-item>
     </block>
@@ -19,11 +19,11 @@
   <view wx:for="{{serveList}}">
     <view class="servesingle" style="height:{{singleheight}}px;">
       <view class="btk">
-        <image class="logo" src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
+        <image class="logo" src="https://helizixun.cn/{{item.serve_url}}"></image>
         <text class="bt">{{item.serve_name}}</text>
       </view>
-      <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://xcx.heyukj.com/{{item.serve_url}}"></image>
-      <button size="mini" class="add" id="{{item.serve_id}}" data-serveid="{{item.serve_id}}" data-servename="{{item.serve_name}}" data-price="{{item.serve_price}}" data-img="https://xcx.heyukj.com/{{item.serve_url}}" bindtap="addtap">￥{{item.serve_price}}  购买</button>
+      <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://helizixun.cn/{{item.serve_url}}"></image>
+      <button size="mini" class="add" id="{{item.serve_id}}" data-serveid="{{item.serve_id}}" data-servename="{{item.serve_name}}" data-price="{{item.serve_price}}" data-img="https://helizixun.cn/{{item.serve_url}}" bindtap="addtap">￥{{item.serve_price}}  购买</button>
     </view>
   </view>-->
 </view>

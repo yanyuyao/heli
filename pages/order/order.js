@@ -31,7 +31,7 @@ Page({
     
     util.getUserId();
     wx.request({
-      url: 'https://xcx.heyukj.com/index.php/Portal/Interface/serveList',
+      url: 'https://helizixun.cn/index.php/Portal/Interface/serveList',
       data: {
 
       },

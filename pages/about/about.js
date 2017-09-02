@@ -13,7 +13,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'https://xcx.heyukj.com/index.php/Portal/Interface/getAbout',
+      url: 'https://helizixun.cn/index.php/Portal/Interface/getAbout',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST", 
       data:{
