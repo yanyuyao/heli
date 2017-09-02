@@ -19,7 +19,6 @@ Page({
     })
   },
   tipnumber: function(e){
-    console.log(e.detail.value);
     this.setData({tipnum:e.detail.value});
   },
   tiphide: function () {
@@ -29,10 +28,9 @@ Page({
   },
   tippay: function(){
     var that = this;
-    console.log('==== 打赏 =====');
     if (wx.getStorageSync('usersession')){
         wx.request({
-          url: 'https://helizixun.cn/index.php/Portal/Order/tippay',
+          url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=tippay',
           data: {
             user_id: wx.getStorageSync('userid'),
             usersession: wx.getStorageSync('usersession'),
@@ -43,8 +41,6 @@ Page({
             "Content-Type": "application/x-www-form-urlencoded"
           },
           success: function (res) {
-            console.log(res.data);
-            console.log('==== tippay success ====');
             that.setData({
               popdisplay: 'none',
             });
@@ -59,8 +55,6 @@ Page({
                 var pkg = 'prepay_id=' + reswxData.prepay_id;
                 var nonceStr = reswxData.nonce_str;
                 var paySign = utilMd5.hexMD5('appId=' + appId + '&nonceStr=' + nonceStr + '&package=' + pkg + '&signType=MD5&timeStamp=' + timeStamp + "&key=7TCfxZCV2xFFGKEJo15ooCoVzP6iMyVL").toUpperCase();
-                // console.log(paySign);
-                //console.log(appId);
                 wx.requestPayment({
                   'timeStamp': timeStamp,
                   'nonceStr': nonceStr,
@@ -68,10 +62,9 @@ Page({
                   'signType': 'MD5',
                   'paySign': paySign,
                   'success': function (res) {
-                    //console.log(" === wx request payment success === ");
                     //{{{支付成功，修改订单状态
                     wx.request({
-                      url: 'https://helizixun.cn/index.php/Portal/Order/payTipOrder',
+                      url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=payTipOrder',
                       data: {
                         tid: tipid,
                         status: 1
@@ -93,26 +86,21 @@ Page({
                       } 
                     });
                     //}}} 支付成功，修改订单状态
-                    //console.log(res);
                   },
                   'fail': function (res) {
-                    //console.log(" === wx request payment fail === ");
                     wx.showToast({
                       title: "打赏失败...",//这里打印出登录成功           
                       icon: 'warn',
                       duration: 2000
                     });
                     
-                    //console.log(res);
                   },
                   'complete': function (res) {
-                    //console.log(" === wx request payment complete === ");
                     //wx.showToast({
                     //  title: "支付完成...",//这里打印出登录成功           
                     //  icon: 'success',
                     //  duration: 2000
                     //});
-                    //console.log(res);
                   }
                 });
               } else {
@@ -125,7 +113,6 @@ Page({
               }
               //}}} end 微信支付
             }else{
-              console.log('=== 打赏参数错误 ===');
             }
           },
           fail: function () {
@@ -144,14 +131,13 @@ Page({
     
     var that = this;
     wx.request({
-      url: 'https://helizixun.cn/index.php/Portal/Interface/getReward',
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Interface&a=getReward',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",
       data: {
 
       },
       success: function (res) {
-        console.log(res);
         that.setData({
           tipimg: res.data.reward_url,
         })

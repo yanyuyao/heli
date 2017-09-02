@@ -22,7 +22,7 @@ Page({
     util.getUserId();
     var that = this;
     wx.request({
-      url: 'https://helizixun.cn/index.php/Portal/Interface/bannerList',
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Interface&a=bannerList',
       data:{
         
       },

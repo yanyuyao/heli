@@ -13,14 +13,13 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'https://helizixun.cn/index.php/Portal/Interface/getAbout',
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Interface&a=getAbout',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST", 
       data:{
 
       },
       success:function(res){
-        console.log(res);
         that.setData({
           abouttext:res.data.about,
         })

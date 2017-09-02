@@ -27,11 +27,10 @@ Page({
         })
       },
     })
-    console.log(this.data.singleheight);
     
     util.getUserId();
     wx.request({
-      url: 'https://helizixun.cn/index.php/Portal/Interface/serveList',
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Interface&a=serveList',
       data: {
 
       },
@@ -40,7 +39,6 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log(res.data);
         that.setData({
           serveList:res.data.data
         });

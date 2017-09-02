@@ -26,9 +26,7 @@ function wxLogin(e) {
   //});
   //调用登录接口
   //1.小程序调用wx.login得到code.
-  console.log("===== FUN wxLogin =====");
   var usersession = wx.getStorageSync('usersession');
-  console.log("");
   if(usersession){
     return 1;
   }
@@ -40,7 +38,6 @@ function wxLogin(e) {
       //2.小程序调用wx.getUserInfo得到rawData, signatrue, encryptData.
       wx.getUserInfo({
         success: function (info) {
-          console.log(info);
           var rawData = info['rawData'];
           var signature = info['signature'];
           var encryptData = info['encryptData'];
@@ -66,8 +63,6 @@ function wxLogin(e) {
               "Content-Type": "application/x-www-form-urlencoded"
             }, // 设置请求的 header   
             success: function (res) {
-              console.log('==================== ouid ==========');
-              console.log(res.data.ouid);
               wx.setStorageSync('usersession', res.data.ouid);
               if (res.statusCode != 200) {
                 wx.showModal({
@@ -77,7 +72,6 @@ function wxLogin(e) {
               //that.setData({
               //  usersession: res.data.ouid
               //});
-              //console.log(that.data.usersession);
               //typeof func == "function" && func(res.data);
             }
           });
@@ -91,14 +85,10 @@ function wxLogin(e) {
 
 //{{{上传文件
 function uploadFileToServer(tempFilePaths, filetype) {
-  console.log("======= Fun uploadFileToServer 上传文件方法 ========");
-  console.log(tempFilePaths);
   wx.saveFile({
     tempFilePath: tempFilePaths,
     success: function (res) {
       var savedFilePath = res.savedFilePath;
-      console.log("====== save file path =======");
-      console.log("==== save file path : " + savedFilePath);
       wx.uploadFile({
         url: 'https://xcx.heyukj.com/index.php/Portal/Order/uploadfiles',
         filePath: savedFilePath,
@@ -108,10 +98,7 @@ function uploadFileToServer(tempFilePaths, filetype) {
         },
         success: function (res) {
           var data = res.data;
-          console.log("上传成功返回值");
-          console.log(data);
           data = eval('(' + data + ')');
-          console.log(data);
           if (data.status == 1001 && data.url != ''){
             if (filetype == 'xcx_aratar'){
               wx.setStorageSync('useravatar', data.url);
@@ -142,17 +129,13 @@ function uploadFileToServer(tempFilePaths, filetype) {
 
         },
         fail:function(res){
-          //console.log(res);
           wx.showModal({
             title: '上传文件失败'
           });
         },
         complete:function(res){
           var data = res.data;
-          console.log("上传成功返回值");
-          console.log(data);
           data = eval('(' + data + ')');
-          console.log(data);
           if (data.status == 1001 && data.url != '') {
             if (filetype == 'xcx_aratar') {
               wx.setStorageSync('useravatar', data.url);
@@ -186,7 +169,6 @@ function uploadFileToServer(tempFilePaths, filetype) {
  * 获取上次下单时间和服务次数
  */
 function userServiceStatus(curthis,serve_id) {
-  console.log("===== Fun userServiceStratus=====");
   var that = curthis;
   var userid = wx.getStorageSync('userid');
   var usersession = wx.getStorageSync('usersession');
@@ -202,13 +184,12 @@ function userServiceStatus(curthis,serve_id) {
       "Content-Type": "application/x-www-form-urlencoded"
     },
     success: function (res) {
-      console.log(res.data);
       if (res.data.data.morethan6 == 1){
         wx.showToast(
           {
             title: '距离您上次购买时间不能小于6小时!',
             icon: '',
-            image: 'loading',
+            image: '../../images/warn.png',
             duration: 2500
           });
         setTimeout(function () { wx.hideToast() }, 2000); 
@@ -221,7 +202,7 @@ function userServiceStatus(curthis,serve_id) {
             {
               title: '达到了今日购买次数上限!',
               icon: '',
-              image: 'loading',
+              image: '../../images/warn.png',
               duration: 2500
             });
           setTimeout(function () { wx.hideToast() }, 2000);
@@ -238,7 +219,6 @@ function userServiceStatus(curthis,serve_id) {
   
 }
 function registerUser(){
-  console.log("========= register User ==========");
   var userInfo = getApp().globalData.userInfo;
   if(!userInfo){
     wx.getUserInfo({
@@ -275,7 +255,6 @@ function registerUser(){
  
 }
 function getUserId(curthis){
-  console.log("======= get User Id =============");
   var userid = wx.getStorageSync('userid');
   var usersession = wx.getStorageSync('usersession');
 
@@ -295,7 +274,6 @@ function getUserId(curthis){
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log("===>"+res.data.status);
         if(res.data.status == '1001'){
           wx.setStorageSync('userid', res.data.userid);
           userid = res.data.userid;
@@ -310,9 +288,6 @@ function getUserId(curthis){
       }
     })
   };
-  console.log('userid==>'+wx.getStorageSync('userid'));
-  console.log('usersession==>' + wx.getStorageSync('usersession'));
-  console.log("======== end get User Id ============");
 
   return userid;
 }
@@ -324,24 +299,18 @@ function imageUtil(e) {
   var originalWidth = e.detail.width;//图片原始宽 
   var originalHeight = e.detail.height;//图片原始高 
   var originalScale = originalHeight / originalWidth;//图片高宽比 
-  console.log('originalWidth: ' + originalWidth)
-  console.log('originalHeight: ' + originalHeight)
   //获取屏幕宽高 
   wx.getSystemInfo({
     success: function (res) {
       var windowWidth = res.windowWidth;
       var windowHeight = res.windowHeight;
       var windowscale = windowHeight / windowWidth;//屏幕高宽比 
-      console.log('windowWidth: ' + windowWidth)
-      console.log('windowHeight: ' + windowHeight)
       //图片缩放后的宽为屏幕宽 
       imageSize.imageWidth = windowWidth;
       imageSize.imageHeight = (windowWidth * originalHeight) / originalWidth;
 
     }
   })
-  console.log('缩放后的宽: ' + imageSize.imageWidth)
-  console.log('缩放后的高: ' + imageSize.imageHeight)
   return imageSize;
 }
 

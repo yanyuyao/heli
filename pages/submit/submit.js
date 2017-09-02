@@ -199,7 +199,7 @@ Page({
       if(usersession){
        
         wx.request({
-          url: 'https://helizixun.cn/Portal/Order/createOrder', 
+          url: 'https://helizixun.cn?g=Portal&m=Order&a=createOrder', 
           header: { "Content-Type": "application/x-www-form-urlencoded" }, 
           method: "POST", 
           data: { 
@@ -255,7 +255,7 @@ Page({
                       //console.log(" === wx request payment success === ");
                      //{{{支付成功，修改订单状态
                       wx.request({
-                        url: 'https://helizixun.cn/index.php/Portal/Order/payOrder',
+                        url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=payOrder',
                         data: {
                           order_id: order_id,
                           status : 2
@@ -354,7 +354,7 @@ Page({
       console.log('====== order Info =====');
       var that = this;
         wx.request({
-          url: 'https://helizixun.cn/index.php/Portal/Order/orderInfo',
+          url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=orderInfo',
           data: {
             user_id: wx.getStorageSync('userid'),
             order_id: options.order_id
@@ -385,7 +385,7 @@ Page({
 
     var that = this;
     wx.request({
-      url: 'https://helizixun.cn/index.php/Portal/Interface/VsampleList',
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Interface&a=VsampleList',
       data: {
 
       },

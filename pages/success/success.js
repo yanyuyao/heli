@@ -19,7 +19,7 @@ Page({
     util.getUserId();
     that.setData({ serve_id: options.sid});
     wx.request({
-      url: 'https://helizixun.cn/index.php/Portal/Order/getServeSuccess',
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=getServeSuccess',
       data: {
         user_id: wx.getStorageSync('userid'),
         serve_id: options.sid,
@@ -29,7 +29,6 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log(res.data);
         that.setData({
           serve_name: res.data.data.serve_name,
           serve_today_num: res.data.data.today_buy,

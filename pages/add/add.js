@@ -19,14 +19,10 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        console.log('==== 保存头像文件 ====');
-        console.log(res.tempFilePath);
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         that.setData({
           headimg: res.tempFilePaths
         });  
-        console.log("file path==>"+res.tempFilePaths);
-        
         util.uploadFileToServer(res.tempFilePaths[0], 'xcx_aratar');
         //this.data.setData({ headimg:wx.getStorageSync('useravatar')});
       }
@@ -45,7 +41,6 @@ Page({
   /**提交支付 */
   formSubmit: function (e) {
     var that = this;
-    console.log(e.detail.value.sex);
     if (e.detail.value.name.length == 0) {
       wx.showToast({
           title: '姓名不得为空!',
@@ -145,9 +140,8 @@ Page({
         });
       setTimeout(function () { wx.hideToast() }, 2000); 
     }else{
-      console.log('user avatar path:' + wx.getStorageSync('useravatar'));
       wx.request({
-        url: 'https://helizixun.cn/index.php/Portal/Interface/addus',
+        url: 'https://helizixun.cn/index.php?g=Portal&m=Interface&a=addus',
         header: { "Content-Type": "application/x-www-form-urlencoded" },
         method: "POST",
         data: {
@@ -169,8 +163,6 @@ Page({
           addus_post: e.detail.value.post,
         },
         success: function (res) {
-          console.log('提交成功');
-          console.log(res);
           if (res.data.status == 1003) {
             wx.showToast({
               title: "提交成功，即将返回首页",//这里打印出登录成功           

@@ -21,7 +21,7 @@ Page({
     var that = this;
     util.getUserId();
     wx.request({
-      url: 'https://helizixun.cn/index.php/Portal/Order/orderList',
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=orderList',
       data: {
         user_id:wx.getStorageSync('userid')
       },
@@ -30,7 +30,6 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log(res.data);
         that.setData({
           orderList: res.data.data,
           orderListCount:res.data.data.length
@@ -52,7 +51,6 @@ Page({
       order_id: s.currentTarget.dataset.oid
     });
     var redirectUrl = '../submit/submit?order_id=' + that.data.order_id + '&serve_id=' + that.data.serve_id + '&selectedimg=' + that.data.selectedimg + '&selectedprice=' + s.currentTarget.dataset.price + '&serve_name=' + s.currentTarget.dataset.name;
-    console.log(redirectUrl);
 
     wx.redirectTo({
       url: redirectUrl
