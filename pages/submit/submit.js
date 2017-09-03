@@ -68,26 +68,34 @@ Page({
     var that = this;
     wx.startRecord({
       success: function (res) {
+        console.log("9999999999--->"+res);
+        /*
         that.setData({
           soundfile: res.tempFilePath
         });
+       */
         setTimeout(function () {
           //暂停播放
           wx.stopRecord()
-        }, 59000)
-        console.log(that.data.soundfile);
-        /*wx.saveFile({
-          tempFilePath: res.tempFilePath[0],
+        }, 59000);
+        //console.log(that.data.soundfile);
+        console.log('==== 保存录音文件 ====');
+        var tempFilePaths = res.tempFilePath;
+        console.log('tem file ==>' + tempFilePaths);
+        wx.saveFile({
+          tempFilePath: tempFilePaths,
           success: function (res) {
             var savedFilePath = res.savedFilePath;
             console.log("====== save file =======");
+            wx.setStorageSync('soundfile', savedFilePath);
           }
         })
-        */
+        
+        console.log('}}}==== 保存录音文件 ====');
 
-        console.log('==== 保存录音文件 ====');
-        console.log(res.tempFilePath);
-       
+        
+        //console.log(res.tempFilePath);
+        //console.log('8888===>' + wx.getStorageSync('soundfile'));
 
       }
     })
@@ -109,10 +117,11 @@ Page({
   },
   /**试听录音文件 */
   silkPlay: function () {
-    console.log('录音文件路径' + this.data.soundfile);
+    console.log('录音文件路径' + wx.getStorageSync('soundfile'))
+    //console.log('录音文件路径' + this.data.soundfile);
     var that = this;
     wx.playVoice({
-      filePath:that.data.soundfile,
+      filePath: wx.getStorageSync('soundfile'),
       complete:function(){
         console.log('试听录音文件成功');
       }
@@ -125,7 +134,8 @@ Page({
       luyindisplay: 'block',
       shitingdisplay: "none",
       confirmdisplay:'none',
-    })
+    });
+    wx.setStorageSync('soundfile','')
   },
 
   /** 录音确认上传 */
@@ -133,8 +143,12 @@ Page({
     this.setData({
       confirmdisplay:'block',
       shitingdisplay:'none',
-    })
-    util.uploadFileToServer(this.data.soundfile, 'sounds');
+    });
+    if(wx.getStorageSync('soundfile')){
+      //util.uploadFileToServer(this.data.soundfile, 'sounds');
+      util.uploadFileToServer(wx.getStorageSync('soundfile'), 'sounds');
+    }
+    
   },
 
 

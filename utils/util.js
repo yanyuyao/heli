@@ -49,7 +49,7 @@ function wxLogin(e) {
 
           //3.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
           wx.request({
-            url: 'https://xcx.heyukj.com/index.php/User/Register/wxLogin/',
+            url: 'https://helizixun.cn/index.php?g=User&m=Register&a=wxLogin',
             data: {
               "code": code,
               "rawData": rawData,
@@ -84,26 +84,34 @@ function wxLogin(e) {
 //}}} 用户登录
 
 //{{{上传文件
-function uploadFileToServer(tempFilePaths, filetype) {
-  wx.saveFile({
-    tempFilePath: tempFilePaths,
-    success: function (res) {
-      var savedFilePath = res.savedFilePath;
+function uploadFileToServer(savedFilePath, filetype) {
+  console.log('uploadFileToServer');
+  console.log(savedFilePath);
+  //wx.saveFile({
+    //tempFilePath: tempFilePaths,
+    //success: function (res) {
+    //  console.log("11111111111111111");
+   //   var savedFilePath = res.savedFilePath;
       wx.uploadFile({
-        url: 'https://xcx.heyukj.com/index.php/Portal/Order/uploadfiles',
+        url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=uploadfiles',
         filePath: savedFilePath,
         name: "file",
         formData: {
           "filetype": filetype
         },
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }, // 设置请求的 header  
         success: function (res) {
           var data = res.data;
-          data = eval('(' + data + ')');
-          if (data.status == 1001 && data.url != ''){
+          console.log("upload success" + res);
+          console.log("upload success" + data);
+         // data = eval('(' + data + ')');
+          if (data != ''){
             if (filetype == 'xcx_aratar'){
-              wx.setStorageSync('useravatar', data.url);
+              wx.setStorageSync('useravatar', data);
             }else if (filetype == 'sounds'){
-              wx.setStorageSync('ordersounds', data.url);
+              wx.setStorageSync('ordersounds', data);
             }
           }
           /*else{
@@ -117,6 +125,7 @@ function uploadFileToServer(tempFilePaths, filetype) {
             setTimeout(function () { wx.hideToast() }, 2000); 
           }
           */
+          console.log("上传成功，文件路径==》"+wx.getStorageSync('ordersounds'));
           //do something
           wx.showToast(
             {
@@ -135,12 +144,13 @@ function uploadFileToServer(tempFilePaths, filetype) {
         },
         complete:function(res){
           var data = res.data;
-          data = eval('(' + data + ')');
-          if (data.status == 1001 && data.url != '') {
+          //data = eval('(' + data + ')');
+          console.log("---complete---"+data);
+          if (data!= '') {
             if (filetype == 'xcx_aratar') {
-              wx.setStorageSync('useravatar', data.url);
+              wx.setStorageSync('useravatar', data);
             } else if (filetype == 'sounds') {
-              wx.setStorageSync('ordersounds', data.url);
+              wx.setStorageSync('ordersounds', data);
             }
           }
           //do something
@@ -156,8 +166,8 @@ function uploadFileToServer(tempFilePaths, filetype) {
            */
         }
       });
-    }
-  })
+  //  }
+  //})
 
 
 }
@@ -174,7 +184,7 @@ function userServiceStatus(curthis,serve_id) {
   var usersession = wx.getStorageSync('usersession');
   
   wx.request({
-    url: 'https://xcx.heyukj.com/index.php/Portal/Order/getUserServiceStatus',
+    url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=getUserServiceStatus',
     data: {
       user_id: wx.getStorageSync('userid'),
       serve_id:serve_id
@@ -226,7 +236,7 @@ function registerUser(){
         getApp().globalData.userInfo = info.userInfo;
         userInfo = info.userInfo;
         wx.request({
-          url: 'https://xcx.heyukj.com/index.php/User/Register/register',
+          url: 'https://helizixun.cn/index.php?g=User&m=Register&a=register',
           data: {
             openId: wx.getStorageSync('usersession'),
             avatar: userInfo.avatarUrl,
@@ -265,7 +275,7 @@ function getUserId(curthis){
   if (!userid) {
     //根据session获得user_id
     wx.request({
-      url: 'https://xcx.heyukj.com/index.php/User/Register/getUserId',
+      url: 'https://helizixun.cn/index.php?g=User&m=Register&a=getUserId',
       data: {
         openId: usersession
       },
