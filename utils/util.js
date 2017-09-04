@@ -130,8 +130,7 @@ function uploadFileToServer(savedFilePath, filetype) {
           wx.showToast(
             {
               title: '上传成功!',
-              icon: '',
-              image: '../../images/warn.png',
+              icon: 'success',
               duration: 1500
             });
           setTimeout(function () { wx.hideToast() }, 2000); 
@@ -158,8 +157,7 @@ function uploadFileToServer(savedFilePath, filetype) {
           *wx.showToast(
           * {
           *    title: '上传完成!',
-          *    icon: '',
-          *    image: '../../images/warn.png',
+          *    icon: 'success',
           *    duration: 1500
           *  });
           *setTimeout(function () { wx.hideToast() }, 2000);

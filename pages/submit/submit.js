@@ -156,6 +156,7 @@ Page({
    * 提交订单
    */
   formSubmit: function (e) {
+    console.log(e.detail.value.zixun_text);
     wx.showToast(
       {
         title: '订单提交中...',
@@ -211,7 +212,7 @@ Page({
         //console.log(this.data.serve_name);
       var usersession = wx.getStorageSync('usersession');
       if(usersession){
-       
+       var that = this;
         wx.request({
           url: 'https://helizixun.cn?g=Portal&m=Order&a=createOrder', 
           header: { "Content-Type": "application/x-www-form-urlencoded" }, 
@@ -244,9 +245,9 @@ Page({
                   duration: 2000  
                 });
                 console.log("=== 支付成功后跳转的页面 " + '../success/success/?sid=' + this.data.serve_id);
-                wx.navigateTo({
-                  url:'../success/success/?sid='+this.data.serve_id
-                });
+                //wx.navigateTo({
+                 // url:'../success/success/?sid='+this.data.serve_id
+                //});
               }else{
               //{{{
                 var reswxData = res.data.data.wxorder;
@@ -285,7 +286,7 @@ Page({
                             duration: 2000
                           });
                           wx.navigateTo({
-                            url: '../success/success'
+                            url: '../success/success?sid=' + that.data.serve_id
                           });
                         }
                       });
@@ -296,7 +297,8 @@ Page({
                       //console.log(" === wx request payment fail === ");
                       wx.showToast({
                         title: "支付失败...",//这里打印出登录成功           
-                        icon: 'error',
+                        icon: '',
+                        image: '../../images/warn.png', 
                         duration: 2000
                       });
                       //console.log(res);
@@ -314,7 +316,8 @@ Page({
                 }else{
                   wx.showToast({
                     title: "支付失败...",//这里打印出登录成功           
-                    icon: 'error',
+                    icon: '',
+                    image: '../../images/warn.png', 
                     duration: 2000
                   });
                 }
@@ -346,6 +349,7 @@ Page({
           wx.showToast({
             title: "登录授权失败...",//这里打印出登录成功           
             icon: 'error',
+            image: '../../images/warn.png', 
             duration: 1000
           });
           util.wxLogin(this);
