@@ -1,5 +1,5 @@
 <view class="contain">
-  <image class="topimg" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
+  <image class="topimg" mode="aspectFit" src="../../images/baner1.jpg"></image>
   <text class="text">
     您已支付成功，工作人员会尽快电话联系您梳理您的咨询需求。
   </text>

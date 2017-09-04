@@ -23,8 +23,11 @@ image.bgimg{
    line-height:50px; font-size:0.9rem; font-weight:bold; color:#000; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 button[size="mini"].add{
-  width:130px; height:35px; line-height:35px; float: right;position:absolute; bottom:100px; right:20px; color:#000;
+  width:130px; height:35px; line-height:35px; float: right;position:absolute; bottom:110px; right:20px; color:#000;
 }
+/*button::after{
+ * content: none;
+}*/
 .arrow-k{
   position: absolute; bottom:25px; left:0; right:0; width:100%; text-align: center;
 }
@@ -37,7 +40,7 @@ button[size="mini"].add{
 }
 
 .footer{
-  width:100%; height:50px; font-size:0.8rem; line-height:50px; background-color:#E51C23; color:#fff; clear:both; position:fixed; bottom:0; left:0;
+  width:100%; height:50px; font-size:0.8rem; line-height:50px; background-color:#a21e2c; color:#fff; clear:both; position:fixed; bottom:0; left:0;
 }
 .footer image{
   width:35px; height:35px; margin:7px 2% 0; float:left;
@@ -54,12 +57,7 @@ image.close{
 .confirm-right{
   float:right;
 }
-
-
-
-
-
-
-
-
+image.success{
+  width:22px; height:22px; margin-top:-3px; vertical-align: middle; float: none;
+}
 

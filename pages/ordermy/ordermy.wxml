@@ -34,7 +34,9 @@
   <view class="right">未支付</view>
   <view class="clear"></view>
 </view>-->
-
+<view class="phone" bindtap="phonetap">
+  客服电话：0513-85336626
+</view>
 
 
 

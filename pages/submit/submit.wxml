@@ -5,6 +5,7 @@
       <view class="sound" style="display:{{sounddisplay}}">
         <button size="mini" bindlongtap="soundtap" bindtouchend="soundtapend" style="display:{{luyindisplay}}">
           <image src="../../images/luyin.png"></image>
+          <view class="luyintext">按住录音</view>
         </button>
         <view style="display:{{shitingdisplay}}">
           <audio src="{{soundfile}}" bindtap="silkPlay" data-src="{{soundfile}}" id="myAudio">
@@ -24,9 +25,14 @@
       </view>
       <view wx:for="{{shililist}}">
         <view class="shili">
-          <audio src="https://helizixun.cn/{{item.vsample_url}}" bindtap="audioPlay" bindpause="audiostop" bindended="audiostop" id="audio_{{item.vsample_id}}" data-src="https://helizixun.cn/{{item.vsample_url}}">
-            <image src="{{audioimgsrc}}"></image>
-            {{item.title}}
+          <audio controls src="https://helizixun.cn/{{item.vsample_url}}" bindtap="audioPlay" bindpause="audiostop" bindended="audiostop" id="audio_{{item.vsample_id}}" data-src="https://helizixun.cn/{{item.vsample_url}}">
+          <image src="../../images/yuyin.png" style="display:{{yuyindisplay}};" ></image>
+          <view wx:if="{{isPlaying}}">
+            <image wx:if="{{j==1}}"src="../../images/yuyin_2.png" ></image>
+            <image wx:if="{{j==2}}" src="../../images/yuyin_3.png" ></image>
+            <image wx:if="{{j==3}}" src="../../images/yuyin.png" ></image>
+          </view>
+          <view class="shilititle">{{item.title}}</view>
           </audio>
         </view>
       </view>

@@ -11,7 +11,7 @@ swiper{
   text-align: center;
 }
 button.button{
-  width:60%; line-height:35px; color:#fff;  background-size:100%; background-color:#e51c23; background-position:center center; margin:20px auto 30px; font-size:0.8rem; padding:0;
+  width:60%; line-height:35px; color:#fff;  background-size:100%; background-color:#a21e2c; background-position:center center; margin:20px auto 30px; font-size:0.8rem; padding:0;
 }
 .list{
   width:84%; margin:0 8%; line-height:70px; border-bottom:1px solid #ccc; clear:both;

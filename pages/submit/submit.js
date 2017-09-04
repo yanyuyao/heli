@@ -29,7 +29,9 @@ Page({
     shitingdisplay:"none",
     shililist:[],
     confirmdisplay:'none',
-    audioimgsrc:'../../images/yuyin.png',
+    j: 1,//帧动画初始图片 
+    isPlaying: false,//是否正在播放语音 
+    yuyindisplay:'block',
   },
   audioPlay: function (e) {
     console.log(this.audioCtx);
@@ -40,12 +42,24 @@ Page({
     console.log(curplayid);
     this.audioCtx = wx.createAudioContext(curplayid);
     this.audioCtx.play();
+    var that = this;
+    playing.call(that);
+    that.setData({
+      isPlaying: true,
+      yuyindisplay: 'none',
+    }) 
     /**
     wx.playVoice({
       filePath: e.currentTarget.dataset.src,
     })*/
   },
- 
+  audiostop:function(){
+    this.setData({
+      isPlaying: false,
+      yuyindisplay: 'block',
+    }) 
+  },
+  
  
   /**选项卡切换 */
   soundcardtap:function(){
@@ -424,4 +438,16 @@ Page({
     })
   },
 })
-
+//语音播放帧动画 
+function playing() {
+  var _this = this;
+  //话筒帧动画 
+  var i = 1;
+  this.timer = setInterval(function () {
+    i++;
+    i = i % 4;
+    _this.setData({
+      j: i
+    })
+  }, 500);
+}

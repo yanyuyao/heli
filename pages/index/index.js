@@ -10,7 +10,7 @@ Page({
     imgUrls: [],
     indicatorDots: true,
     autoplay: true,
-    interval: 4000,
+    interval: 10000,
     duration: 1000,
   },
 

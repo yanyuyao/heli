@@ -35,7 +35,7 @@
     </view>
   <navigator url="../submit/submit?serve_id={{serve_id}}&serve_name={{serve_name}}&selectedimg={{selectedimg}}&selectedprice={{selectedprice}}">
     <view class="confirm">
-      选好了
+      <image src="../../images/success.png" class="success"></image>
       <view class="confirm-right">></view>
     </view>
   </navigator>

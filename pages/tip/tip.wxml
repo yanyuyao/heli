@@ -1,8 +1,12 @@
 <view class="contain">
   <image style="width:{{imagewidth}}px; height:{{imageheight}}px" bindload="imageLoad" src="https://helizixun.cn/{{tipimg}}"></image>
 </view>
+<view class="text">
+  <view>看不见的，是不是就等于不存在？</view>
+  <view>我看不见你，却依然感觉温暖。</view>
+</view>
 <view class="footer" bindtap="tiptap">
-  打赏我们哟！！
+  打赏我们
 </view>
 <view class="pop" style="display:{{popdisplay}};">
   <input type="number" placeholder="输入打赏金额" bindinput="tipnumber"/>

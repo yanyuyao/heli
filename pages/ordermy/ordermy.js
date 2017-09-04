@@ -56,7 +56,12 @@ Page({
       url: redirectUrl
     })  
   },
-
+  /**打电话 */
+  phonetap: function () {
+    wx.makePhoneCall({
+      phoneNumber: '0513-85336626',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
