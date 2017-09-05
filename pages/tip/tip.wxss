@@ -1,5 +1,5 @@
 .contain{
-  width:100%; position:fixed; top:0; left:0;
+  width:100%; position: fixed; top:0; left: 0;
 }
 .img1{
   width:100%; margin:10px 0;

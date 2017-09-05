@@ -29,9 +29,9 @@ Page({
     shitingdisplay:"none",
     shililist:[],
     confirmdisplay:'none',
-    j: 1,//帧动画初始图片 
-    isPlaying: false,//是否正在播放语音 
-    yuyindisplay:'block',
+    //j: 1,//帧动画初始图片 
+    //isPlaying: false,//是否正在播放语音 
+    //yuyindisplay:'block',
   },
   audioPlay: function (e) {
     console.log(this.audioCtx);
@@ -42,23 +42,23 @@ Page({
     console.log(curplayid);
     this.audioCtx = wx.createAudioContext(curplayid);
     this.audioCtx.play();
-    var that = this;
-    playing.call(that);
-    that.setData({
-      isPlaying: true,
-      yuyindisplay: 'none',
-    }) 
+    //var that = this;
+    //playing.call(that);
+    //that.setData({
+    //  isPlaying: true,
+    //  yuyindisplay: 'none',
+    //}) 
     /**
     wx.playVoice({
       filePath: e.currentTarget.dataset.src,
     })*/
   },
-  audiostop:function(){
-    this.setData({
-      isPlaying: false,
-      yuyindisplay: 'block',
-    }) 
-  },
+  //audiostop:function(){
+  //  this.setData({
+  //    isPlaying: false,
+  //    yuyindisplay: 'block',
+  //  }) 
+  //},
   
  
   /**选项卡切换 */
@@ -221,7 +221,9 @@ Page({
           duration: 1500
         });
         setTimeout(function () { wx.hideToast() }, 2000) 
-    } else {
+    } else if (wx.getStorageSync('ordersounds') != '' || e.detail.value.zixun_text!=''){
+      console.log('语音服务器路径：'+wx.getStorageSync('ordersounds'));
+      console.log('咨询文本：' + e.detail.value.zixun_text);
         //console.log('create order');
         //console.log(this.data.serve_name);
       var usersession = wx.getStorageSync('usersession');
@@ -300,8 +302,10 @@ Page({
                             duration: 2000
                           });
                           wx.navigateTo({
-                            url: '../success/success?sid=' + that.data.serve_id
+                            url: '../success/success?sid=' + that.data.serve_id+'&oid='+that.data.order_id
                           });
+                          wx.setStorageSync('soundfile','');
+                          wx.setStorageSync('ordersounds', '');
                         }
                       });
                       //}}} 支付成功，修改订单状态
@@ -315,6 +319,8 @@ Page({
                         image: '../../images/warn.png', 
                         duration: 2000
                       });
+                      wx.setStorageSync('soundfile', '');
+                      wx.setStorageSync('ordersounds', '');
                       //console.log(res);
                     },
                     'complete': function (res) {
@@ -363,12 +369,26 @@ Page({
           wx.showToast({
             title: "登录授权失败...",//这里打印出登录成功           
             icon: 'error',
-            image: '../../images/warn.png', 
+            image: '', 
             duration: 1000
           });
           util.wxLogin(this);
       }
-    }  
+    } else if (wx.getStorageSync('soundfile')!=''){
+      wx.showToast({
+        title: '请上传语音！',          
+        icon: '',
+        image: '../../images/warn.png', 
+        duration: 1500
+      });
+    } else if (wx.getStorageSync('soundfile') == '') {
+      wx.showToast({
+        title: '请录音或填写咨询文本',
+        icon: '',
+        image: '../../images/warn.png',
+        duration: 1500
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面加载

@@ -42,6 +42,7 @@ Page({
         that.setData({
           serveList:res.data.data
         });
+        console.log(res);
       },
       fail: function () {
         

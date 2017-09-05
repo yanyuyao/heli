@@ -7,6 +7,9 @@
 .text{
   width:100%; color:#000; font-size:0.8rem; font-weight:bold;
 }
+.number{
+  width:100%; color:#000; font-size: 0.8rem; margin:20px 0; font-weight:bold;
+}
 .button{
   line-height:35px; height:35px; background-color:#a21e2c; color:#fff; margin:30px auto 60px; font-size:0.9rem;
 }

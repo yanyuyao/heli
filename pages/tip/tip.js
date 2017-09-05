@@ -90,7 +90,8 @@ Page({
                   'fail': function (res) {
                     wx.showToast({
                       title: "打赏失败...",//这里打印出登录成功           
-                      icon: 'warn',
+                      icon: '',
+                      image: '../../images/warn.png', 
                       duration: 2000
                     });
                     
@@ -109,7 +110,6 @@ Page({
                   icon: 'error',
                   duration: 2000
                 });
-                
               }
               //}}} end 微信支付
             }else{
@@ -141,6 +141,7 @@ Page({
         that.setData({
           tipimg: res.data.reward_url,
         })
+        console.log('hhhhhhh'+that.data.tipimg);
       }
     });
 

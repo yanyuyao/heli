@@ -3,6 +3,7 @@
     <image src="https://helizixun.cn/{{item.serve_url}}"></image>
     <view class="center">
       <view class="center-bt">{{item.serve_name}}</view>
+      <view class="center-number">订单号：{{item.order_num}}</view>
       <view class="center-price">￥{{item.serve_price}}</view>
     </view>
     <view class="right right-pay red" wx:if="{{item.status==1}}" id="1" bindtap="paytap" data-oid="{{item.order_id}}" data-sid="{{item.serve_id}}" data-img="https://helizixun.cn/{{item.serve_url}}" data-price="{{item.serve_price}}" data-name="{{item.serve_name}}">未支付</view>

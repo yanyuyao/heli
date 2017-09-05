@@ -25,7 +25,7 @@
       </view>
       <view wx:for="{{shililist}}">
         <view class="shili">
-          <audio controls src="https://helizixun.cn/{{item.vsample_url}}" bindtap="audioPlay" bindpause="audiostop" bindended="audiostop" id="audio_{{item.vsample_id}}" data-src="https://helizixun.cn/{{item.vsample_url}}">
+          <audio src="https://helizixun.cn/{{item.vsample_url}}" bindtap="audioPlay" bindpause="audiostop" bindended="audiostop" id="audio_{{item.vsample_id}}" data-src="https://helizixun.cn/{{item.vsample_url}}">
           <image src="../../images/yuyin.png" style="display:{{yuyindisplay}};" ></image>
           <view wx:if="{{isPlaying}}">
             <image wx:if="{{j==1}}"src="../../images/yuyin_2.png" ></image>

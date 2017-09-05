@@ -7,7 +7,8 @@ Page({
     serve_id: 0,
     serve_name: '',
     serve_today_num: 0,
-    serve_today_left: 0
+    serve_today_left: 0,
+    order_number:''
   },
 
   /**
@@ -23,6 +24,7 @@ Page({
       data: {
         user_id: wx.getStorageSync('userid'),
         serve_id: options.sid,
+        oid:options.oid
       },
       method: 'POST',
       header: {
@@ -33,7 +35,8 @@ Page({
         that.setData({
           serve_name: res.data.data.serve_name,
           serve_today_num: res.data.data.today_buy,
-          serve_today_left: res.data.data.today_left
+          serve_today_left: res.data.data.today_left,
+          order_number:res.data.data.order_num
         });
       },
       fail: function () {
