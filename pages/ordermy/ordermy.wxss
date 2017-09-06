@@ -1,5 +1,5 @@
 .single{
-  width:96%; height:70px; border-bottom:1px solid #ccc; padding:10px 2%;
+  width:96%; height:70px; border-bottom:1px solid #ccc; padding:10px 2%; background-image: url(https://helizixun.cn/data/upload/serve_bg.png); background-position: bottom left; background-size: cover; color:#fff;
 }
 .single image{
   width:60px; height:60px; float:left;

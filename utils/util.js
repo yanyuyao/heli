@@ -208,10 +208,10 @@ function userServiceStatus(curthis,serve_id) {
         if (res.data.data.limitbuy == 1) {
           wx.showToast(
             {
-              title: '达到了今日购买次数上限!',
+              title: '已达今日购买上限，次日刷新购买次数',
               icon: '',
               image: '../../images/warn.png',
-              duration: 2500
+              duration: 3000
             });
           setTimeout(function () { wx.hideToast() }, 2000);
           that.setData({

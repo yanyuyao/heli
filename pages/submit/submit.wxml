@@ -1,4 +1,6 @@
+<import src="music-template/music-template.wxml" />
 <form bindsubmit="formSubmit">
+  <scroll-view class="stopMove" scroll-y="true" >
     <view class="contain">
       <view class="card {{soundactive}}" bindtap="soundcardtap">语音咨询</view>
       <view class="card {{textactive}}" bindtap="textcardtap">文字咨询</view>
@@ -21,13 +23,21 @@
         </view>
       </view>
       <view class="text" style="display:{{textdisplay}}">
-        <textarea placeholder="" id="zixun_text" name="zixun_text" value="{{order_tconsult}}"/>
+        <textarea placeholder="请输入咨询内容" id="zixun_text" name="zixun_text" value="{{order_tconsult}}"/>
       </view>
+      <block wx:for="{{musicList}}" wx:for-item="item" wx:for-index="idx"><!--//template-->
+        <view>
+          <template is="musicTemplate" data="{{...item,isPlayingMusic:isPlayingMusics[idx]}}" />
+        </view>
+      </block> 
+
+
+      <!--录音示例
       <view wx:for="{{shililist}}">
         <view class="shili">
           <audio src="https://helizixun.cn/{{item.vsample_url}}" bindtap="audioPlay" bindpause="audiostop" bindended="audiostop" id="audio_{{item.vsample_id}}" data-src="https://helizixun.cn/{{item.vsample_url}}">
-          <image src="../../images/yuyin.png" style="display:{{yuyindisplay}};" ></image>
-          <view wx:if="{{isPlaying}}">
+          <image src="../../images/yuyin.png" style="display:{{yuyindisplay}};" id="audio_{{item.vsample_id}}_img1"></image>
+          <view wx:if="{{isPlaying}}" id="audio_{{item.vsample_id}}_img2">
             <image wx:if="{{j==1}}"src="../../images/yuyin_2.png" ></image>
             <image wx:if="{{j==2}}" src="../../images/yuyin_3.png" ></image>
             <image wx:if="{{j==3}}" src="../../images/yuyin.png" ></image>
@@ -35,7 +45,7 @@
           <view class="shilititle">{{item.title}}</view>
           </audio>
         </view>
-      </view>
+      </view>-->
       <input id="companyname" name="companyname" type="text" placeholder="姓名/公司名称" bindinput="namevalue" value="{{order_names}}"></input>
       <input id="phone" name="phone" type="number" placeholder="手机号" bindblur="telvalue" maxlength="11" value="{{order_tel}}"></input>
       <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
@@ -50,18 +60,18 @@
         <navigator url="../shengming/shengming">《免责声明》</navigator>
       </view>
     </view>
+  </scroll-view>
 
-
-    <view class="footer" style="display:block;">
-      <image src="{{selectedimg}}"></image>
-      <view class="price">￥{{selectedprice}}</view>
-      <!--<navigator url="../success/success">-->
-        <view class="confirm" bindtap="createOrder">
-          <view class="confirm-right">></view>
-          <button size="mini" class="submit" formType="submit">提交并支付</button>
-        </view>
-     <!--</navigator>-->
-    </view>
+  <view class="footer" style="display:block;">
+    <image src="{{selectedimg}}"></image>
+    <view class="price">￥{{selectedprice}}</view>
+    <!--<navigator url="../success/success">-->
+      <view class="confirm" bindtap="createOrder">
+        <view class="confirm-right">></view>
+        <button size="mini" class="submit" formType="submit">提交并支付</button>
+      </view>
+    <!--</navigator>-->
+  </view>
 </form>
 
 

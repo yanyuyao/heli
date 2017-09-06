@@ -18,7 +18,10 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    g_isPlayingMusic: false,
+    g_currentMusicId: null,
+    doubanBase: "https://api.douban.com",
   },
   
 })

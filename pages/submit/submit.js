@@ -1,6 +1,8 @@
 var utilMd5 = require('../../utils/md5.js');
 var util = require('../../utils/util.js');  
-var app = getApp;
+//var musicsData = require('../../data/music-data.js');
+var musicsData = [];
+var app = getApp();
 Page({
 
   /**
@@ -28,11 +30,15 @@ Page({
     luyindisplay:'block',
     shitingdisplay:"none",
     shililist:[],
+    musicList:[],
     confirmdisplay:'none',
+    isPlayingMusics: [],
+    musicId: "",
     //j: 1,//帧动画初始图片 
     //isPlaying: false,//是否正在播放语音 
     //yuyindisplay:'block',
   },
+  
   audioPlay: function (e) {
     console.log(this.audioCtx);
     if(this.audioCtx !== undefined){
@@ -395,12 +401,14 @@ Page({
    */
   onLoad: function (options) {
     util.getUserId();
+    
     this.setData({
       selectedimg:options.selectedimg,
       selectedprice:options.selectedprice,
       serve_id: options.serve_id,
       serve_name: options.serve_name,
-      order_id: options.order_id
+      order_id: options.order_id,
+      //musicList: local_database,
     });
     if (options.order_id != 'undefined' && options.order_id >0){
       console.log('====== order Info =====');
@@ -449,7 +457,9 @@ Page({
         console.log("录音示例文件列表");
         console.log(res);
         that.setData({
-          shililist:res.data.data
+          //shililist:res.data.data
+          musicList: res.data.data,
+          musicsData:res.data.data
         });
       },
       fail: function () {
@@ -457,6 +467,108 @@ Page({
       }
     })
   },
+
+
+
+  onShow: function (options) {
+    var musicId = app.globalData.g_currentMusicId;
+    //实现页面再次载入时音乐图标显示正确
+    if (app.globalData.g_isPlayingMusic) {
+      //var musicId = app.globalData.g_currentMusicId;
+      var isPlayingMusics = [];
+      isPlayingMusics[musicId - 1] = true
+      this.setData({
+        isPlayingMusics: isPlayingMusics,
+        musicId: musicId,
+      })
+      //app.globalData.g_isPlayingMusic = true;
+    }
+    else {
+      var isPlayingMusics = [];
+      this.setData({
+        isPlayingMusics: isPlayingMusics,
+        musicId: musicId
+      })
+    }
+    this.setMusicMonitor();
+  },
+  //监听总控开关与页面开关一致
+  setMusicMonitor: function () {
+    var that = this;
+    //音乐是否播放
+    wx.onBackgroundAudioPlay(function (event) {
+      var musicId = app.globalData.g_currentMusicId;
+      var isPlayingMusics = [];
+      isPlayingMusics[musicId - 1] = true
+      that.setData({
+        isPlayingMusics: isPlayingMusics,
+        musicId: musicId,
+      }),
+        app.globalData.g_isPlayingMusic = true;
+      // app.globalData.g_currentMusicId = musicId;
+    })
+    //音乐是否暂停
+    wx.onBackgroundAudioPause(function (event) {
+      var musicId = app.globalData.g_currentMusicId;
+      var isPlayingMusics = [];
+      //isPlayingMusics[musicId - 1] = false
+      that.setData({
+        isPlayingMusics: isPlayingMusics,
+        //musicId: musicId,
+      }),
+        app.globalData.g_isPlayingMusic = false;
+      //app.globalData.g_currentMusicId = musicId;
+    })
+    //音乐播放结束
+    wx.onBackgroundAudioStop(function (event) {
+      var musicId = app.globalData.g_currentMusicId;
+      var isPlayingMusics = [];
+      //isPlayingMusics[musicId - 1] = false
+      that.setData({
+        isPlayingMusics: isPlayingMusics,
+        //musicId: musicId,
+      }),
+        app.globalData.g_isPlayingMusic = false;
+      //app.globalData.g_currentMusicId = musicId;
+    })
+  },
+  //实现音乐的播放与暂停
+  onMusicTap: function (event) {
+    var musicId = event.currentTarget.dataset.musicid;
+    var musicData = this.data.musicList[musicId - 1];
+    var isPlayingMusic = this.data.isPlayingMusics[musicId - 1];
+    if (isPlayingMusic) {
+      wx.pauseBackgroundAudio();
+      var isPlayingMusics = [];
+      //isPlayingMusics[musicId - 1] = false;
+      this.setData({
+        isPlayingMusics: isPlayingMusics,
+        // musicId: musicId,
+      }),
+        app.globalData.g_isPlayingMusic = false;
+      //app.globalData.g_currentMusicId = null;
+    }
+    else {
+      wx.playBackgroundAudio({
+        dataUrl: musicData.mp3Url,
+        title: musicData.name,
+      })
+      var isPlayingMusics = [];
+      isPlayingMusics[musicId - 1] = true
+      this.setData({
+        isPlayingMusics: isPlayingMusics,
+        musicId: musicId,
+      })
+      app.globalData.g_currentMusicId = musicId;
+      app.globalData.g_isPlayingMusic = true;
+      // console.log(app.globalData.g_currentMusicId)
+    }
+  },
+  
+  onUnload:function(){
+    wx.pauseBackgroundAudio();
+  }
+
 })
 //语音播放帧动画 
 function playing() {

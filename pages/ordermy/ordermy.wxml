@@ -9,7 +9,7 @@
     <view class="right right-pay red" wx:if="{{item.status==1}}" id="1" bindtap="paytap" data-oid="{{item.order_id}}" data-sid="{{item.serve_id}}" data-img="https://helizixun.cn/{{item.serve_url}}" data-price="{{item.serve_price}}" data-name="{{item.serve_name}}">未支付</view>
     <view class="right-contact green" wx:elif="{{item.status==2}}" id="2">
       已支付
-      <contact-button size="40" type="default-dark"></contact-button>  
+      <contact-button size="40" type="default-light"></contact-button>  
     </view>
     <view class="right-contact blue" wx:elif="{{item.status==3}}" id="3" bindtap="ordermytap">
       已处理

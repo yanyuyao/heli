@@ -1,9 +1,9 @@
 <view class="view2" bindtap="bodytap">
-  <swiper vertical="true" class="servesingle" style="height:{{singleheight}}px; background-image:url(https://helizixun.cn/data/upload/59ae03292e77b.jpg); background-size:cover;">
+  <swiper vertical="true" class="servesingle" style="height:{{singleheight}}px; background-image:url(https://helizixun.cn/data/upload/serve_bg.png); background-size:cover;">
     <block wx:for="{{serveList}}">
       <swiper-item>
-        <image src="https://helizixun.cn{{item.serve_bg}}" class="bgimg"></image>
-        <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://helizixun.cn{{item.serve_process}}?v=0.1"></image>
+        <image src="https://helizixun.cn{{item.serve_bg}}?v=0.3" class="bgimg"></image>
+        <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://helizixun.cn{{item.serve_process}}?v=0.3"></image>
         <view class="btk">
           <image class="logo" src="https://helizixun.cn/{{item.serve_url}}?v=0.1"></image>
           <text class="bt">{{item.serve_name}}</text>
