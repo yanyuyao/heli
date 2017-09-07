@@ -10,9 +10,11 @@ App({
 
     wx.getUserInfo({
       withCredentials: false,
+      lang:'zh_CN',
       success: function (res) {
         getApp().globalData.userInfo = res.userInfo;
         wx.setStorageSync('userInfo', res.userInfo);
+        console.log(res);
       }
     });
   },
@@ -57,7 +59,7 @@ function wxLogin(e) {
           wx.request({
             url: 'https://xcx.heyukj.com/index.php/User/Register/wxLogin/',
             data: {
-              "code": code,
+              "code": code,                     
               "rawData": rawData,
               "signature": signature,
               "encryptData": encryptData,

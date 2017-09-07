@@ -27,6 +27,9 @@ button.shitingbutton{
 .shitingconfirm audio{
   width:70%;
 }
+.shitingconfirm audio button{
+  line-height: 100px;
+}
 
 
 
