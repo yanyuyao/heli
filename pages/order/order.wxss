@@ -63,4 +63,18 @@ image.close{
 image.success{
   width:22px; height:22px; margin-top:-3px; vertical-align: middle; float: none;
 }
-
+.pop{
+  width:80%; height:180px; text-align: center; position:fixed;top:20%; left:10%; border:1px solid #ccc; background-color:#fff; border-radius:10px; -webkit-border-radius:10px; -moz-border-radius:10px;
+}
+.pop-message{
+ width:80%; font-size:0.8rem; margin:30px 10% 0; line-height: 30px; text-align: left;
+}
+.pop-button{
+  width:50%; line-height:50px; float: left; border-top:1px solid #ccc; position: absolute; bottom:0;
+}
+.pop-cancel{
+  color:#888; border-right:1px solid #ccc; margin-right:-1px; left:0;
+}
+.pop-confirm{
+  color:#a21e2c; right:0;
+}

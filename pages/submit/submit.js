@@ -36,12 +36,10 @@ Page({
   },
   
   audioPlay: function (e) {
-    console.log(this.audioCtx);
     if(this.audioCtx !== undefined){
       this.audioCtx.pause();
     }
     var curplayid = e.currentTarget.id;
-    console.log(curplayid);
     this.audioCtx = wx.createAudioContext(curplayid);
     this.audioCtx.play();
   },
@@ -68,24 +66,19 @@ Page({
     var that = this;
     wx.startRecord({
       success: function (res) {
-        console.log("9999999999--->"+res);
         setTimeout(function () {
           //暂停播放
           wx.stopRecord()
         }, 59000);
-        console.log('==== 保存录音文件 ====');
         var tempFilePaths = res.tempFilePath;
-        console.log('tem file ==>' + tempFilePaths);
         wx.saveFile({
           tempFilePath: tempFilePaths,
           success: function (res) {
             var savedFilePath = res.savedFilePath;
-            console.log("====== save file =======");
             wx.setStorageSync('soundfile', savedFilePath);
           }
         })
         
-        console.log('}}}==== 保存录音文件 ====');
 
       }
     })
@@ -107,13 +100,10 @@ Page({
   },
   /**试听录音文件 */
   silkPlay: function () {
-    console.log('录音文件路径' + wx.getStorageSync('soundfile'))
-    //console.log('录音文件路径' + this.data.soundfile);
     var that = this;
     wx.playVoice({
       filePath: wx.getStorageSync('soundfile'),
       complete:function(){
-        console.log('试听录音文件成功');
       }
     })
   },
@@ -147,16 +137,12 @@ Page({
    * 提交订单
    */
   formSubmit: function (e) {
-    console.log(e.detail.value.zixun_text);
     wx.showToast(
       {
         title: '订单提交中...',
         icon: 'loading',
         duration: 1500
       }); 
-    console.log("====== 提交订单 ========");
-    console.log("==== openid : " + this.data.usersession);
-    console.log("==== 录音文件 ："+this.data.soundfile);
     if (e.detail.value.companyname.length == 0) { 
         wx.showToast(
           { 
@@ -199,8 +185,6 @@ Page({
         });
         setTimeout(function () { wx.hideToast() }, 2000) 
     } else if (wx.getStorageSync('ordersounds') != '' || e.detail.value.zixun_text!=''){
-      console.log('语音服务器路径：'+wx.getStorageSync('ordersounds'));
-      console.log('咨询文本：' + e.detail.value.zixun_text);
       var usersession = wx.getStorageSync('usersession');
       if(usersession){
        var that = this;
@@ -224,7 +208,6 @@ Page({
             order_email: e.detail.value.email 
           }, 
           success: function (res) {
-            console.log('创建订单成功');
             if (res.data.status == 1003){
               var order_id = res.data.data.order_id;
               var order_num = res.data.data.order_num;
@@ -234,7 +217,6 @@ Page({
                   icon: 'success',
                   duration: 2000  
                 });
-                console.log("=== 支付成功后跳转的页面 " + '../success/success/?sid=' + this.data.serve_id);
                 
               }else{
               //{{{
@@ -287,7 +269,6 @@ Page({
                       });
                       wx.setStorageSync('soundfile', '');
                       wx.setStorageSync('ordersounds', '');
-                      //console.log(res);
                     },
                     'complete': function (res) {
                     }
@@ -352,7 +333,6 @@ Page({
       order_id: options.order_id,
     });
     if (options.order_id != 'undefined' && options.order_id >0){
-      console.log('====== order Info =====');
       var that = this;
         wx.request({
           url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=orderInfo',
@@ -365,7 +345,6 @@ Page({
             "Content-Type": "application/x-www-form-urlencoded"
           },
           success: function (res) {
-            console.log(res.data);
             that.setData({
               order_email: res.data.data.order_email,
               order_tel: res.data.data.order_tel,
@@ -395,15 +374,12 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log("录音示例文件列表");
-        console.log(res);
         that.setData({
           musicList: res.data.data,
           musicsData:res.data.data
         });
       },
       fail: function () {
-        console.log("获取录音示例文件列表失败");
       }
     })
   },
@@ -501,7 +477,6 @@ Page({
       })
       app.globalData.g_currentMusicId = musicId;
       app.globalData.g_isPlayingMusic = true;
-      // console.log(app.globalData.g_currentMusicId)
     }
   },
   

@@ -31,7 +31,6 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log(res);
         that.setData({
           serve_name: res.data.data.serve_name,
           serve_today_num: res.data.data.today_buy,

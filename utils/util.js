@@ -85,13 +85,6 @@ function wxLogin(e) {
 
 //{{{上传文件
 function uploadFileToServer(savedFilePath, filetype) {
-  console.log('uploadFileToServer');
-  console.log(savedFilePath);
-  //wx.saveFile({
-    //tempFilePath: tempFilePaths,
-    //success: function (res) {
-    //  console.log("11111111111111111");
-   //   var savedFilePath = res.savedFilePath;
       wx.uploadFile({
         url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=uploadfiles',
         filePath: savedFilePath,
@@ -104,8 +97,6 @@ function uploadFileToServer(savedFilePath, filetype) {
         }, // 设置请求的 header  
         success: function (res) {
           var data = res.data;
-          console.log("upload success" + res);
-          console.log("upload success" + data);
          // data = eval('(' + data + ')');
           if (data != ''){
             if (filetype == 'xcx_aratar'){
@@ -114,18 +105,7 @@ function uploadFileToServer(savedFilePath, filetype) {
               wx.setStorageSync('ordersounds', data);
             }
           }
-          /*else{
-            wx.showToast(
-              {
-                title: '上传失败rrr!',
-                icon: '',
-                image: '../../images/warn.png',
-                duration: 1500
-              });
-            setTimeout(function () { wx.hideToast() }, 2000); 
-          }
-          */
-          console.log("上传成功，文件路径==》"+wx.getStorageSync('ordersounds'));
+          
           //do something
           wx.showToast(
             {
@@ -143,8 +123,6 @@ function uploadFileToServer(savedFilePath, filetype) {
         },
         complete:function(res){
           var data = res.data;
-          //data = eval('(' + data + ')');
-          console.log("---complete---"+data);
           if (data!= '') {
             if (filetype == 'xcx_aratar') {
               wx.setStorageSync('useravatar', data);
@@ -195,7 +173,7 @@ function userServiceStatus(curthis,serve_id) {
       if (res.data.data.morethan6 == 1){
         wx.showToast(
           {
-            title: '距离您上次购买时间不能小于6小时!',
+            title: '距离您上次购买时间不能小于' + res.data.data.morethanhours +'小时!',
             icon: '',
             image: '../../images/warn.png',
             duration: 2500
@@ -204,20 +182,30 @@ function userServiceStatus(curthis,serve_id) {
         that.setData({
           footerdisplay: "none"
         });
-      }else{
-        if (res.data.data.limitbuy == 1) {
-          wx.showToast(
-            {
-              title: '已达今日购买上限，次日刷新购买次数',
-              icon: '',
-              image: '../../images/warn.png',
-              duration: 3000
-            });
-          setTimeout(function () { wx.hideToast() }, 2000);
-          that.setData({
-            footerdisplay: "none"
+      }else if (res.data.data.limitbuy == 1) {
+        wx.showToast(
+          {
+            title: '已达今日购买上限，次日刷新购买次数',
+            icon: '',
+            image: '../../images/warn.png',
+            duration: 3000
           });
-        }
+        setTimeout(function () { wx.hideToast() }, 2000);
+        that.setData({
+          footerdisplay: "none"
+        });
+      } else if (res.data.data.order_limit_day !== 0 && res.data.data.order_limit_hours !== 0){
+          that.setData({
+            footerdisplay: 'none',
+            popdisplay: 'block',
+            waitTime: res.data.data.order_limit_day + '天' + res.data.data.order_limit_hours + '小时',
+          });
+      } else if (res.data.data.order_limit_day == 0 && res.data.data.order_limit_hours !== 0) {
+        that.setData({
+          footerdisplay: 'none',
+          popdisplay: 'block',
+          waitTime: res.data.data.order_limit_hours + '小时',
+        });
       }
     },
     fail: function () {

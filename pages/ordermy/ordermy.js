@@ -34,7 +34,6 @@ Page({
           orderList: res.data.data,
           orderListCount:res.data.data.length
         });
-        console.log(res);
       },
       fail: function () {
 

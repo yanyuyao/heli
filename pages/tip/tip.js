@@ -141,7 +141,6 @@ Page({
         that.setData({
           tipimg: res.data.reward_url,
         })
-        console.log('hhhhhhh'+that.data.tipimg);
       }
     });
 

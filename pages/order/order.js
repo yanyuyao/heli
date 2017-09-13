@@ -12,6 +12,8 @@ Page({
     selectedprice:'',
     singleheight:'',
     lcimgheight:'',
+    popdisplay:'none',
+    waitTime:'',
   },
 
   /**
@@ -42,7 +44,6 @@ Page({
         that.setData({
           serveList:res.data.data
         });
-        console.log(res);
       },
       fail: function () {
         
@@ -70,6 +71,20 @@ Page({
   },
   
 
+  orderCancel:function(){
+    this.setData({
+      popdisplay:'none',
+      footerdisplay:'none',
+    })
+  },
+
+
+  orderConfirm: function () {
+    this.setData({
+      popdisplay: 'none',
+      footerdisplay: 'block',
+    })
+  },
  
 })
 

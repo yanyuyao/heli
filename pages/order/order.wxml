@@ -29,3 +29,8 @@
     </view>
   </navigator>
 </view>
+<view class="pop" style="display:{{popdisplay}};">
+  <view class="pop-message">当前排队人数过多，下单{{waitTime}}后客服将与您联系，请确认是否立即下单</view>
+  <view class="pop-button pop-cancel" bindtap="orderCancel">取消</view>
+  <view class="pop-button pop-confirm" bindtap="orderConfirm">确定</view>
+</view>
