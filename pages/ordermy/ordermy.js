@@ -30,6 +30,7 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
+        console.log(res);
         that.setData({
           orderList: res.data.data,
           orderListCount:res.data.data.length

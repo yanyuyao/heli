@@ -16,6 +16,8 @@
       <contact-button size="40" type="default-dark"></contact-button>
       </view> 
     <view class="right gray" wx:elif="{{item.status==4}}" id="4">已完成</view>
+    <view class="right gray" wx:elif="{{item.status==5}}" id="5"><text>申请\n 退款</text></view>
+    <view class="right gray" wx:elif="{{item.status==6}}" id="6"><text>退款\n 完成</text></view>
     <view class="clear"></view>
   </view>
 </view>

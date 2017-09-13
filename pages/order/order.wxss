@@ -23,7 +23,7 @@ image.image{
    line-height:50px; font-size:1.1rem; font-weight:bold; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 button[size="mini"].add{
-  width:120px; height:35px; font-size: 1rem; line-height:35px; color:#fff; float: right;position:absolute; bottom:23%; right:0;  left: 0; background:none; border: 1px solid #fff; border-radius:7px;padding:0 20px 0 0;
+  width:120px; height:35px; font-size: 1rem; line-height:35px; color:#fff; float: right;position:absolute; bottom:23%; right:0;  left: 0; background:none; border: 1px solid #a21e2c; border-radius:7px;padding:0 20px 0 0; background-color: #a21e2c; box-shadow:0px 1px 3px #ccc;
 }
 button[size="mini"].add image{
   width:21px; height:21px; vertical-align: middle; position: absolute; top:6px; right:15px;
