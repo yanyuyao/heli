@@ -1,18 +1,105 @@
+var util = require('../../utils/util.js');  
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    singleheight:'',
+    orderList:[],
+    selectedimg:'',
+    selectedprice:'',
+    serve_name:'',
+    serve_id:0,
+    order_id:0,
+    orderListCount:0,
+    enablePullDownRefresh:'true',
   },
+  loadlist: function () {
+    var that = this;
+    util.getUserId();
+    wx.request({
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=orderList',
+      data: {
+        user_id: wx.getStorageSync('userid')
+      },
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        that.setData({
+          orderList: res.data.data,
+          orderListCount: res.data.data.length
+        });
+      },
+      fail: function () {
 
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.loadlist();
+
   },
+  /** 未支付订单 点击跳转支付*/
+  paytap:function(s){
+    var that = this;
+    that.setData({
+      selectedimg: s.currentTarget.dataset.img,
+      selectedprice: s.currentTarget.dataset.price,
+      serve_name: s.currentTarget.dataset.name,
+      serve_id: s.currentTarget.dataset.sid,
+      order_id: s.currentTarget.dataset.oid
+    });
+    var redirectUrl = '../submit/submit?order_id=' + that.data.order_id + '&serve_id=' + that.data.serve_id + '&selectedimg=' + that.data.selectedimg + '&selectedprice=' + s.currentTarget.dataset.price + '&serve_name=' + s.currentTarget.dataset.name;
+
+    wx.redirectTo({
+      url: redirectUrl
+    })  
+  },
+  /**打电话 */
+  phonetap: function () {
+    wx.makePhoneCall({
+      phoneNumber: '0513-85336626',
+    })
+  },
+
+  /**页面跳转 */
+  ordertap:function(){
+    wx.redirectTo({
+      url: '../order/order',
+    })
+  },
+
+  /**订单删除 */
+  deletetap:function(e){
+    var that = this;
+    wx.request({
+      url: 'https://helizixun.cn/index.php?g=Portal&m=Order&a=deleteOrder',
+      data: {
+        order_id: e.target.dataset.orderid
+      },
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        wx.showToast({
+          title: res.data.msg,
+          icon:'seccuss',
+          duration:1500,
+        })
+        that.loadlist();
+      },
+      fail: function () {
+
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

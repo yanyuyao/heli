@@ -1,33 +1,63 @@
-<view class="contain">
-  <input type="text" placeholder="姓名/公司名称"></input>
-  <input type="text" placeholder="联系方式"></input>
-  <view class="card">语音咨询</view>
-  <view class="card">文字咨询</view>
-  <view class="sound">
-    <button size="mini">录音</button>
+<import src="music-template/music-template.wxml" />
+<form bindsubmit="formSubmit">
+  
+    <view class="contain">
+      <view class="card {{soundactive}}" bindtap="soundcardtap">语音咨询</view>
+      <view class="card {{textactive}}" bindtap="textcardtap">文字咨询</view>
+      <view class="sound" style="display:{{sounddisplay}}">
+        <button size="mini" bindlongtap="soundtap" bindtouchend="soundtapend" style="display:{{luyindisplay}}">
+          <image src="../../images/luyin.png"></image>
+          <view class="luyintext">按住录音</view>
+        </button>
+        <view style="display:{{shitingdisplay}}">
+          <audio src="{{soundfile}}" bindtap="silkPlay" data-src="{{soundfile}}" id="myAudio">
+            <button class="shitingbutton" size="mini" bindtap="silkPlay">试听</button>
+          </audio>
+          <button class="shitingbutton" size="mini" bindtap="deletetap">删除</button>
+          <button class="shitingbutton" size="mini" bindtap="confirmtap">上传</button>
+        </view>
+        <view style="display:{{confirmdisplay}};" class="shitingconfirm">
+          <audio src="{{soundfile}}" bindtap="silkPlay" id="shitingconfirm" data-src="{{soundfile}}">
+            <button>上传成功</button>
+          </audio>
+        </view>
+      </view>
+      <view class="text" style="display:{{textdisplay}}">
+        <textarea placeholder="请输入咨询内容" id="zixun_text" name="zixun_text" value="{{order_tconsult}}"></textarea>
+      </view>
+    <scroll-view class="stopMove" scroll-y="true" >
+      <block wx:for="{{musicList}}" wx:for-item="item" wx:for-index="idx"><!--//template-->
+        <view>
+          <template is="musicTemplate" data="{{...item,isPlayingMusic:isPlayingMusics[idx]}}"></template>
+        </view>
+      </block>
+      <input id="companyname" name="companyname" type="text" placeholder="姓名/公司名称" value="{{order_names}}"></input>
+      <input id="phone" name="phone" type="number" placeholder="手机号" maxlength="11" value="{{order_tel}}"></input>
+      <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
+      
+      <view class="paytype">
+        支付方式：<icon class="paytypeicon" size="15" type="success" /> 微信支付
+      </view>
+      <view class="shengming">
+        <checkbox-group name="shengming">
+          <checkbox>我已阅读并同意</checkbox>
+        </checkbox-group>
+        <navigator url="../shengming/shengming">《服务指南与免责声明》</navigator>
+      </view>
+    </scroll-view>
   </view>
-  <view class="text">
-    <textarea placeholder="" />
+  
+
+  <view class="footer" style="display:block;">
+    <image src="{{selectedimg}}"></image>
+    <view class="price">￥{{selectedprice}}</view>
+    <!--<navigator url="../success/success">-->
+      <view class="confirm" bindtap="createOrder">
+        <view class="confirm-right">></view>
+        <button size="mini" class="submit" formType="submit">提交并支付</button>
+      </view>
+    <!--</navigator>-->
   </view>
-  <input type="text" placeholder="邮箱"></input>
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{pickerrange}}">
-    <view>
-      支付方式：{{pickerrange[index]}}
-    </view>
-  </picker>
-</view>
-
-
-<view class="footer" style="display:block;">
-  <image src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
-  <view class="price">￥35.00</view>
-  <navigator url="../success/success">
-    <view class="confirm">
-      提交并支付
-      <view class="confirm-right">></view>
-    </view>
-  </navigator>
-</view>
-
+</form>
 
 

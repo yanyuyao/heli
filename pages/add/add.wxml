@@ -1,26 +1,47 @@
-<view class="contain">
-  <view class="headimgk">
-    <image class="headimg" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
+<form bindsubmit="formSubmit">
+  <view class="contain">
+    <view class="headimgk">
+      <image class="headimg" bindtap="imgtap" src="{{headimg}}"></image>
+    </view>
+    <input name="name" type="text" placeholder="姓名"></input>
+    <radio-group name="sex">
+      性别：
+      <label><radio value="0" checked/>保密</label>
+      <label><radio value="1"/>男</label>
+      <label><radio value="2"/>女</label>
+    </radio-group>
+    <input type="number" name="height" placeholder="身高"></input>
+    <view class="section">
+      <picker mode="date" name="birthday" value="{{date}}" start="1937-01-01" end="2117-12-31" bindchange="bindDateChange"> 
+        <view class="picker"> 
+           出生年月:{{date}} 
+        </view> 
+      </picker> 
+    </view>
+    <radio-group name="marry">
+      婚姻状况：
+      <label><radio value="0" checked/>保密</label>
+      <label><radio value="1"/>已婚</label>
+      <label><radio value="2"/>未婚</label>
+    </radio-group>
+    <input type="text" name="addr" placeholder="户口所在地"></input>
+    <input type="text" name="speciale" placeholder="特长"></input>
+    <input type="number" name="tel" placeholder="联系电话" maxlength="11"></input>
+    <input type="text" name="degree" placeholder="学历"></input>
+    <input type="text" name="educate" placeholder="毕业院校"></input>
+    <input type="text" name="english" placeholder="英文能力"></input>
+    <view class="text">
+      <textarea placeholder="工作能力" name="work"/>
+    </view>
+    <view class="text">
+      <textarea placeholder="期望岗位（可选填）" name="post"/>
+    </view>
+    <view class="buttonk">
+      <button size="mini" class="button" form-type="submit">提交</button>
+      <button size="mini" class="button" bindtap='abouttap'>关于我们</button>
+    </view>
   </view>
-  <input type="text" placeholder="姓名"></input>
-  <input type="text" placeholder="性别"></input>
-  <input type="text" placeholder="身高"></input>
-  <input type="text" placeholder="出生年月"></input>
-  <input type="text" placeholder="婚姻状况"></input>
-  <input type="text" placeholder="户口所在地"></input>
-  <input type="text" placeholder="特长"></input>
-  <input type="text" placeholder="联系电话"></input>
-  <input type="text" placeholder="学历"></input>
-  <input type="text" placeholder="毕业院校"></input>
-  <input type="text" placeholder="英文能力"></input>
-  <view class="text">
-    <textarea placeholder="工作能力" />
-  </view>
-  <view class="text">
-    <textarea placeholder="期望岗位（可选填）" />
-  </view>
-  <view class="buttonk">
-    <button size="mini" class="button">提交</button>
-    <button size="mini" class="button">取消</button>
-  </view>
+</form>
+<view class="phone" bindtap="phonetap">
+  投资与合作服务电话: 18611599099
 </view>

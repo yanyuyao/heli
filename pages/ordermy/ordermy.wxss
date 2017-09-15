@@ -1,19 +1,60 @@
 .single{
-  width:96%; border-bottom:1px solid #ccc; padding:15px 2%;
+  width:96%; height:70px; border-bottom:1px solid #ccc; padding:10px 2%; background-image: url(https://helizixun.cn/data/upload/serve_bg.png); background-position: bottom left; background-size: cover; color:#fff; position: relative;
 }
 .single image{
-  width:20%; height:70px; float:left;
+  width:60px; height:60px; float:left; margin-top:-5px;
 }
 .center{
-  width:50%; float: left; margin:0 2%; font-size:0.8rem;
+  width:50%; float: left; margin:0 2%; font-size:0.8rem; position:relative;
+}
+.center-bt{
+  font-size:0.9rem; overflow:hidden; text-overflow: ellipsis; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient: vertical;
+}
+.center-number{
+  position: absolute; top:32px;left:2px; font-size:0.7rem;
+}
+.center-price{
+  position:absolute; top:50px; left:2px;
 }
 .right{
-  width:20%; height:70px; line-height:70px; float: right; text-align: center; font-size:1rem; border:1px solid #ccc; border-radius:50px;
+  width:60px; height:60px; color:#fff; line-height:30px; float: right; text-align: center; font-size:0.9rem; font-weight:bold;
+}
+.right-contact{
+  width:60px; height:60px; line-height:30px; float: right; text-align: center; font-size:0.9rem;
+}
+.right-pay{
+  line-height:60px;
+}
+button[size="mini"].ordermybutton{
+  padding:0 3px; line-height:1.1rem; font-size:0.7rem;
+}
+.red{
+  color:#a21e2c;
+}
+.green{
+  color:#48C23D;
+}
+.blue{
+  color:#0A79B8;
+}
+.gray{
+  color:#ccc;
+}
+
+.button-k{
+  text-align: center;
+}
+button.button{
+  width:60%; line-height:35px; background-color:#a21e2c; color:#fff; margin:20px auto 30px; font-size:0.8rem; padding:0;
+}
+.phone{
+  width:100%; text-align: center; line-height: 1.2rem; font-size:0.9rem; margin-bottom:20px;
 }
 
 
-
-
+.delete{
+  font-size: 0.6rem; color:#a21e2c; position: absolute;top:68px; left:15px;
+}
 
 
 

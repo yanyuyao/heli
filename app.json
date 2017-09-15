@@ -1,13 +1,14 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/order/order",
-    "pages/ordermy/ordermy",
+    "pages/about/about",
     "pages/add/add",
-    "pages/tip/tip",
+    "pages/ordermy/ordermy",
+    "pages/order/order",
+    "pages/shengming/shengming",
     "pages/submit/submit",
-    "pages/success/success",
-    "pages/about/about"
+    "pages/tip/tip",
+    "pages/success/success"
   ],
   "window": {
     "backgroundTextStyle": "light",

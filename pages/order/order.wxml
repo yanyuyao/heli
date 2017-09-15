@@ -1,33 +1,34 @@
-<view>
-  <image class="image" src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
-  <text class="bt">网络数据调研 </text>
-  <image class="add" src="../../images/plus.png"></image>
+<view class="view2" bindtap="bodytap">
+  <swiper vertical="true" class="servesingle" style="height:{{singleheight}}px; background-image:url(https://helizixun.cn/data/upload/serve_bg.png); background-size:cover;">
+    <block wx:for="{{serveList}}">
+      <swiper-item>
+        <image src="https://helizixun.cn{{item.serve_bg}}?v=0.3" class="bgimg"></image>
+        <image mode="aspectFit" style="height:{{lcimgheight}}px;" class="image" src="https://helizixun.cn{{item.serve_process}}?v=0.3"></image>
+        <view class="btk">
+          <image class="logo" src="https://helizixun.cn/{{item.serve_url}}?v=0.1"></image>
+          <text class="bt">{{item.serve_name}}</text>
+        </view>
+        <button size="mini" class="add" id="{{item.serve_id}}" data-serveid="{{item.serve_id}}" data-servename="{{item.serve_name}}" data-price="{{item.serve_price}}" data-img="https://helizixun.cn/{{item.serve_url}}" bindtap="addtap">
+        ￥{{item.serve_price}}
+        <image src="../../images/buy.png"></image>
+        </button>
+      </swiper-item>
+    </block>
+  </swiper>
 </view>
-<view class="view2">
-  <image class="image" src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
-  <text class="bt">全面调研 </text>
-  <image class="add" src="../../images/plus.png"></image>
+<view class="footer" style="display:{{footerdisplay}}">
+  <image src="{{selectedimg}}"></image>
+  <view class="price">
+    ￥{{selectedprice}}
+    <image src="../../images/close.png" class="close" bindtap="closetap"></image>
+  </view> 
+  <view class="confirm" bindtap='confirmtap'>
+    <image src="../../images/success.png" class="success"></image>
+    <view class="confirm-right">></view>
+  </view>
 </view>
-<view class="footer" style="display:block;">
-  <image src="http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"></image>
-  <view class="price">￥0</view>
-  <navigator url="../submit/submit">
-    <view class="confirm">
-      选好了
-      <view class="confirm-right">></view>
-    </view>
-  </navigator>
+<view class="pop" style="display:{{popdisplay}};">
+  <view class="pop-message">当前排队人数过多，下单{{waitTime}}后客服将与您联系，请确认是否立即下单</view>
+  <view class="pop-button pop-cancel" bindtap="orderCancel">取消</view>
+  <view class="pop-button pop-confirm" bindtap="orderConfirm">确定</view>
 </view>
-
-
-
-
-
-
-
-
-
-
-
-
-
