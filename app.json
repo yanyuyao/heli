@@ -7,8 +7,8 @@
     "pages/order/order",
     "pages/shengming/shengming",
     "pages/submit/submit",
-    "pages/success/success",
-    "pages/tip/tip"
+    "pages/tip/tip",
+    "pages/success/success"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -7,9 +7,7 @@
   <text class="text">
     您今日使用了{{serve_today_num}}次[{{serve_name}}]的机会，目前还剩余{{serve_today_left}}次[{{serve_name}}]服务机会，每日上午9点会刷新您的服务机会。
   </text>
-  <navigator url="../index/index">
-    <button class="button">返回首页</button>
-  </navigator>
+  <button class="button" bindtap='backtap'>返回首页</button>
 
 </view>
 <view class="sign">

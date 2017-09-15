@@ -194,19 +194,19 @@ function userServiceStatus(curthis,serve_id) {
         that.setData({
           footerdisplay: "none"
         });
-      } else if (res.data.data.order_limit_day !== 0 && res.data.data.order_limit_hours !== 0){
+      } else if (res.data.data.order_limit_day !== '0' && res.data.data.order_limit_hours !== '0'){
           that.setData({
             footerdisplay: 'none',
             popdisplay: 'block',
             waitTime: res.data.data.order_limit_day + '天' + res.data.data.order_limit_hours + '小时',
           });
-      } else if (res.data.data.order_limit_day == 0 && res.data.data.order_limit_hours !== 0) {
+      } else if (res.data.data.order_limit_day == '0' && res.data.data.order_limit_hours !== '0') {
         that.setData({
           footerdisplay: 'none',
           popdisplay: 'block',
           waitTime: res.data.data.order_limit_hours + '小时',
         });
-      }
+      } 
     },
     fail: function () {
 

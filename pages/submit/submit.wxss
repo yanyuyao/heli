@@ -1,7 +1,7 @@
 @import "music-template/music-template.wxss";
 
 .contain{
-  width:94%; margin-bottom:100px; margin-left: 3%; position:relative;
+  width:94%; margin-left: 3%; position:relative;
 }
 .contain input{
   width:96%; height:35px; line-height:35px; border-bottom:1px solid #ccc; font-size:0.8rem; padding:0 2%;
@@ -95,7 +95,7 @@ view{
 
 
 .shengming{
-  width:99%; font-size:0.8rem; margin-left: 1%;
+  width:99%; font-size:0.8rem; margin-left: 1%;  margin-bottom:100px;
 }
 .shengming checkbox-group checkbox{
   float: left;

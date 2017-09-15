@@ -21,13 +21,11 @@
   <view class="price">
     ￥{{selectedprice}}
     <image src="../../images/close.png" class="close" bindtap="closetap"></image>
-    </view>
-  <navigator url="../submit/submit?serve_id={{serve_id}}&serve_name={{serve_name}}&selectedimg={{selectedimg}}&selectedprice={{selectedprice}}">
-    <view class="confirm">
-      <image src="../../images/success.png" class="success"></image>
-      <view class="confirm-right">></view>
-    </view>
-  </navigator>
+  </view> 
+  <view class="confirm" bindtap='confirmtap'>
+    <image src="../../images/success.png" class="success"></image>
+    <view class="confirm-right">></view>
+  </view>
 </view>
 <view class="pop" style="display:{{popdisplay}};">
   <view class="pop-message">当前排队人数过多，下单{{waitTime}}后客服将与您联系，请确认是否立即下单</view>

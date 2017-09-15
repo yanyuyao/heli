@@ -85,6 +85,12 @@ Page({
       footerdisplay: 'block',
     })
   },
+
+  confirmtap:function(){
+    wx.redirectTo({
+      url: '../submit/submit?serve_id='+this.data.serve_id+'&serve_name='+this.data.serve_name+'&selectedimg='+this.data.selectedimg+'&selectedprice='+this.data.selectedprice,
+    })
+  },
  
 })
 

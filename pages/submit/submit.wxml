@@ -1,6 +1,6 @@
 <import src="music-template/music-template.wxml" />
 <form bindsubmit="formSubmit">
-  <scroll-view class="stopMove" scroll-y="true" >
+  
     <view class="contain">
       <view class="card {{soundactive}}" bindtap="soundcardtap">语音咨询</view>
       <view class="card {{textactive}}" bindtap="textcardtap">文字咨询</view>
@@ -23,15 +23,16 @@
         </view>
       </view>
       <view class="text" style="display:{{textdisplay}}">
-        <textarea placeholder="请输入咨询内容" id="zixun_text" name="zixun_text" value="{{order_tconsult}}"/>
+        <textarea placeholder="请输入咨询内容" id="zixun_text" name="zixun_text" value="{{order_tconsult}}"></textarea>
       </view>
+    <scroll-view class="stopMove" scroll-y="true" >
       <block wx:for="{{musicList}}" wx:for-item="item" wx:for-index="idx"><!--//template-->
         <view>
-          <template is="musicTemplate" data="{{...item,isPlayingMusic:isPlayingMusics[idx]}}" />
+          <template is="musicTemplate" data="{{...item,isPlayingMusic:isPlayingMusics[idx]}}"></template>
         </view>
       </block>
-      <input id="companyname" name="companyname" type="text" placeholder="姓名/公司名称" bindinput="namevalue" value="{{order_names}}"></input>
-      <input id="phone" name="phone" type="number" placeholder="手机号" bindblur="telvalue" maxlength="11" value="{{order_tel}}"></input>
+      <input id="companyname" name="companyname" type="text" placeholder="姓名/公司名称" value="{{order_names}}"></input>
+      <input id="phone" name="phone" type="number" placeholder="手机号" maxlength="11" value="{{order_tel}}"></input>
       <input id="email" name="email" type="text" placeholder="邮箱" value="{{order_email}}"></input>
       
       <view class="paytype">
@@ -43,8 +44,9 @@
         </checkbox-group>
         <navigator url="../shengming/shengming">《服务指南与免责声明》</navigator>
       </view>
-    </view>
-  </scroll-view>
+    </scroll-view>
+  </view>
+  
 
   <view class="footer" style="display:block;">
     <image src="{{selectedimg}}"></image>

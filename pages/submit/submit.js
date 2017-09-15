@@ -137,12 +137,6 @@ Page({
    * 提交订单
    */
   formSubmit: function (e) {
-    wx.showToast(
-      {
-        title: '订单提交中...',
-        icon: 'loading',
-        duration: 1500
-      }); 
     if (e.detail.value.companyname.length == 0) { 
         wx.showToast(
           { 
@@ -185,6 +179,12 @@ Page({
         });
         setTimeout(function () { wx.hideToast() }, 2000) 
     } else if (wx.getStorageSync('ordersounds') != '' || e.detail.value.zixun_text!=''){
+      wx.showToast(
+        {
+          title: '订单提交中...',
+          icon: 'loading',
+          duration: 500
+        }); 
       var usersession = wx.getStorageSync('usersession');
       if(usersession){
        var that = this;
@@ -219,7 +219,7 @@ Page({
                 });
                 
               }else{
-              //{{{
+              
                 var reswxData = res.data.data.wxorder;
 
                 if (reswxData.return_code == 'SUCCESS'){
@@ -345,6 +345,7 @@ Page({
             "Content-Type": "application/x-www-form-urlencoded"
           },
           success: function (res) {
+            console.log(res);
             that.setData({
               order_email: res.data.data.order_email,
               order_tel: res.data.data.order_tel,

@@ -1,8 +1,8 @@
 .single{
-  width:96%; height:70px; border-bottom:1px solid #ccc; padding:10px 2%; background-image: url(https://helizixun.cn/data/upload/serve_bg.png); background-position: bottom left; background-size: cover; color:#fff;
+  width:96%; height:70px; border-bottom:1px solid #ccc; padding:10px 2%; background-image: url(https://helizixun.cn/data/upload/serve_bg.png); background-position: bottom left; background-size: cover; color:#fff; position: relative;
 }
 .single image{
-  width:60px; height:60px; float:left;
+  width:60px; height:60px; float:left; margin-top:-5px;
 }
 .center{
   width:50%; float: left; margin:0 2%; font-size:0.8rem; position:relative;
@@ -51,6 +51,10 @@ button.button{
   width:100%; text-align: center; line-height: 1.2rem; font-size:0.9rem; margin-bottom:20px;
 }
 
+
+.delete{
+  font-size: 0.6rem; color:#a21e2c; position: absolute;top:68px; left:15px;
+}
 
 
 

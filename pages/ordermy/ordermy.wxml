@@ -1,6 +1,9 @@
 <view wx:for="{{orderList}}">
   <view class="single">
     <image src="https://helizixun.cn/{{item.serve_url}}"></image>
+    <view class='delete' bindtap='deletetap' data-orderid='{{item.order_id}}'>
+      删除订单
+    </view>
     <view class="center">
       <view class="center-bt">{{item.serve_name}}</view>
       <view class="center-number">订单号：{{item.order_num}}</view>
@@ -23,9 +26,7 @@
 </view>
 <!--<block wx:if="{{orderListCount <= 0}}">-->
     <view class="button-k">
-      <navigator url="../order/order">
-        <button class="button" size="mini" disabled="{{disabled}}" bindtap="default">我要咨询</button>
-      </navigator>
+        <button class="button" size="mini" disabled="{{disabled}}" bindtap="ordertap">我要咨询</button>
     </view>
 <!--</block>-->
 

@@ -165,7 +165,7 @@ Page({
         success: function (res) {
           if (res.data.status == 1003) {
             wx.showToast({
-              title: "提交成功，即将返回首页",//这里打印出登录成功           
+              title: "提交成功!",//这里打印出登录成功           
               icon: 'success',
               duration: 1000
             });
@@ -180,6 +180,12 @@ Page({
         }
       });
     }
+  },
+
+  abouttap:function(){
+    wx.redirectTo({
+      url: '../about/about',
+    })
   },
 
   /**打电话 */
